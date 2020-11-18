@@ -1,4 +1,4 @@
-package kr.co.assemble.dao;
+package kr.co.assemble.repository;
 
 import java.util.List;
 
