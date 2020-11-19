@@ -17,6 +17,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -33,6 +34,7 @@ import kr.co.assemble.service.SendMailService;
 
 @Controller
 public class SignupController {
+
 
 	@Autowired
 	MI_interface mi_dao;
@@ -94,9 +96,6 @@ public class SignupController {
 		String time = Long.toString(System.currentTimeMillis());
 	    String safeFile = root_filePath + attach_path + time + originalFileName;
 
-		
-		
-		
 		File file = new File(path); 
 		if(file.exists() == false){ 
 			file.mkdirs(); 
@@ -173,7 +172,8 @@ public class SignupController {
 	@ResponseBody
 	public ResponseEntity<String> emailAuth(@RequestParam String authCode, @RequestParam String ran, HttpSession session){
 		String EmailCode = (String) session.getAttribute("authCode");
-		String certificate = Integer.toString((Integer) session.getAttribute("ran"));
+		String certificate = Integer.toString((Integer)session.getAttribute("ran"));
+
 		String y = "Y";
 		if(EmailCode.equals(authCode) && certificate.equals(ran)) {
 			session.removeAttribute("ran");
@@ -250,7 +250,7 @@ public class SignupController {
 	}
 	
 	// 어셈블 중복체크 (admin_signup에 ajax로 데이터 넘김)
-	@RequestMapping(value="/duplicateAssembleName")
+	@PostMapping(value="/duplicateAssembleName")
 	@ResponseBody
 	public int duplicateAssembleName(@ModelAttribute MemberInfoDTO dto) {
 		int result = mi_dao.duplicationAssembleName(dto.getMi_assemblename());

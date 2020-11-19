@@ -24,19 +24,6 @@ public class AssembleApplication {
 		return new BCryptPasswordEncoder();
 	}
 
-	@Bean
-	public JavaMailSenderImpl mailSender(){
-		JavaMailSenderImpl javaMailSender = new JavaMailSenderImpl();
-
-
-		javaMailSender.setHost("smtp.gmail.com");
-		javaMailSender.setPort(587);
-		javaMailSender.setUsername("ys3135@gmail.com");
-		javaMailSender.setPassword("");
-
-		return javaMailSender;
-
-	}
 
 
 	

@@ -12,8 +12,10 @@ import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.mail.javamail.JavaMailSender;
+import org.springframework.mail.javamail.JavaMailSenderImpl;
 import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Repository;
@@ -29,7 +31,7 @@ import kr.co.assemble.dto.EmailDTO;
 
 @Service
 public class SendMailImple implements SendMail {
-	
+
 	@Autowired
 	JavaMailSender mailSender;
 	
@@ -43,31 +45,31 @@ public class SendMailImple implements SendMail {
 	String Secret_Key = "--";
 //	@Value("${aws.ses.region}")
 	String region = "--";
-	
-	
+
+
 	@Override
 	@Async
 	public void sendEmail(EmailDTO emaildto) throws UnsupportedEncodingException, MessagingException{
 		// TODO Auto-generated method stub
 		
-		Properties props = System.getProperties();
-    	props.put("mail.transport.protocol", "smtp");
-    	props.put("mail.smtp.port", smptport); 
-    	props.put("mail.smtp.starttls.enable", "true");
-    	props.put("mail.smtp.auth", "true");
-    	props.put("mail.debug", "true");
-    	
-    	Session session = Session.getDefaultInstance(props);
-    	
-    	
-    	System.out.println(emaildto.getSendemail());
-        MimeMessage msg = new MimeMessage(session);
-        
-        
-        msg.setFrom(new InternetAddress(emaildto.getSendemail(),"<ASSEMBLE>"));
-        msg.setRecipient(Message.RecipientType.TO, new InternetAddress(emaildto.getReceiveemail()));
-        msg.setSubject(emaildto.getTitle());
-        msg.setContent(emaildto.getContents(),"text/html; charset=utf-8");
+//		Properties props = System.getProperties();
+//    	props.put("mail.transport.protocol", "smtp");
+//    	props.put("mail.smtp.port", smptport);
+//    	props.put("mail.smtp.starttls.enable", "true");
+//    	props.put("mail.smtp.auth", "true");
+//    	props.put("mail.debug", "true");
+//
+//    	Session session = Session.getDefaultInstance(props);
+//
+//
+//    	System.out.println(emaildto.getSendemail());
+//        MimeMessage msg = new MimeMessage(session);
+//
+//
+//        msg.setFrom(new InternetAddress(emaildto.getSendemail(),"<ASSEMBLE>"));
+//        msg.setRecipient(Message.RecipientType.TO, new InternetAddress(emaildto.getReceiveemail()));
+//        msg.setSubject(emaildto.getTitle());
+//        msg.setContent(emaildto.getContents(),"text/html; charset=utf-8");
         
 //        MimeMessageHelper msghelper = new MimeMessageHelper(msg, true, "UTF-8");
 //		// MimeMessageHelper에 set하기 위함
@@ -77,13 +79,13 @@ public class SendMailImple implements SendMail {
 //		msghelper.setText(emaildto.getContents(), true);		// 내용
 		
 //        Transport transport = session.getTransport();
-//		
-//        transport.connect(seshost, Access_Key, Secret_Key);	
+//
+//        transport.connect(seshost, Access_Key, Secret_Key);
 //        transport.sendMessage(msg, msg.getAllRecipients());
 //
 //        transport.close();
-		
-		
+
+
 		System.out.println(mailSender);
 		System.out.println("mimeMessge 전");
 		MimeMessage message = mailSender.createMimeMessage();
@@ -98,7 +100,7 @@ public class SendMailImple implements SendMail {
 			msghelper.setTo(emaildto.getReceiveemail());		// 받는 사람 이메일
 			msghelper.setSubject(emaildto.getTitle());		// 제목
 			msghelper.setText(emaildto.getContents(), true);		// 내용
-			
+
 			mailSender.send(message);
 			
 //			return true;
