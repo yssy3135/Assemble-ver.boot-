@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>main.jsp</title>
+</head>
+<body>
+<script th:inline="javascript">
+    alert("로그인 되셨습니다.");
+    console.log
+
+    const assemblename = /*[[${session.mi_assemblename }]]*/;
+    const memberno = /*[[${session.memberno }]]*/;
+    console.log(assemblename);
+    console.log(memberno);
+
+    location.href="/assemble.io/"+assemblename+"/home?memberno="+memberno;
+
+</script>
+
+</body>
+</html>
