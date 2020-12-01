@@ -1,6 +1,6 @@
-<c:import url="/assemble.io/${mi_assemblename}/header"></c:import>
 <!DOCTYPE html>
 <html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<th:block th:include ="include/header" ></th:block>
 <head>
     <meta charset="UTF-8">
     <title>wall.jsp</title>
@@ -9,8 +9,8 @@
         //bookmark click 시 변경
         var cnt = 1;
 
-
         $(function(){
+            console.log("시작시작");
             $(".lh").click(function(){
                 console.log(this.src.split("/")[6]);
                 /*   	 img1.src = "/resources/assets/img/bookmark_before.png";
@@ -23,7 +23,7 @@
                     $.ajax({
                         url: "/bookmarkinsert",
                         type: 'POST',
-                        data: {"bno": bno, "groupno" : groupno ,"memberno" : ${memberno},"mark_memno" : writerid },
+                        data: {"bno": bno, "groupno" : groupno ,"memberno" : memberno,"mark_memno" : writerid },
                         dataType: "json",
 
                         success: function(){
@@ -39,7 +39,7 @@
                     $.ajax({
                         url: "/bookmarkdelete",
                         type: 'POST',
-                        data: {"bno": bno,"memberno" : ${memberno}},
+                        data: {"bno": bno,"memberno" : memberno},
                         dataType: "json",
 
                         success: function(){
@@ -67,9 +67,8 @@
 
                 var bno = this.parentNode.childNodes[1].value;
                 var groupno = this.parentNode.childNodes[3].value;
-                var recontents = this.parentNode.childNodes[5].value;
+                var recontents = this.parentNode.childNodes[7].value;
                 /* var categoryno = this.parentNode.childNodes[5].value; */
-
                 document.location.href = "insertComment?bno="+bno+"&groupno="+groupno+"&contents="+recontents;
             });
 
@@ -84,9 +83,10 @@
 
                 var bno = this.parentNode.childNodes[1].value;
                 var groupno = this.parentNode.childNodes[3].value;
-
+                var assemblename = "[[${session.mi_assemblename}]]";
+                console.log(groupno);
                 $.ajax({
-                    url: "/assemble.io/{mi_assemblename}/g/{groupno}/selectRecomment",
+                    url: "/assemble.io/"+assemblename+"/g/"+groupno+"/selectRecomment",
                     type: 'POST',
                     data: {"bno": bno, "groupno" : groupno},
                     dataType: "json",
@@ -319,7 +319,7 @@
             margin-top: 7%;
             margin-bottom: 5%;
             margin-left: 25%;
-            marg
+
         }
         #info {
             border: 2px solid #F2F2F2;
@@ -466,99 +466,99 @@
 <body>
 <div id="main">
     <div id="info">
-        <h2>${groupname }</h2>
-        <h5> 방장 : ${mastername }( ${masterid} )</h5>
+        <h2 th:text="${groupname }"></h2>
+        <h5 th:text="'방장 : '+${mastername }+'( '+${masterid}+' )'"></h5>
         <div id="select">
-            <jsp:include page="../jinwoo/select.jsp"></jsp:include>
+            <th:include page="../jinwoo/select.jsp"></th:include>
         </div>
     </div>
 
     <div id="section">
 
         <div id="insert">
-            <jsp:include page="../jinwoo/board.jsp"></jsp:include>
-            <jsp:include page="../jinwoo/profile.jsp"></jsp:include>
-            <jsp:include page="../jinwoo/gallery.jsp"></jsp:include>
-            <jsp:include page="../jinwoo/file.jsp"></jsp:include>
+            <th:include page="../jinwoo/board.jsp"></th:include>
+            <th:include page="../jinwoo/profile.jsp"></th:include>
+            <th:include page="../jinwoo/gallery.jsp"></th:include>
+            <th:include page="../jinwoo/file.jsp"></th:include>
         </div>
 
         <div id="boarddis" style="display: block;">
-            <c:forEach var="b" items="${thirdlist }">
+            <th:block th:each = "b:${thirdlist}">
                 <div id="board">
                     <div id="z">
-                        <c:if test="${b.boardnotice == 1}">
+                        <th:block th:if = "${b.boardnotice == 1}">
                             <img src="/resources/assets/img/star.png" alt="공지글"  id="notice"/>
                             <b> 공지글</b>
-                        </c:if>
+                        </th:block>
                     </div>
                     <div id="a">
                         <!-- 프사 추가 하려면 Groupboard_MemberinfoDTO에 프사 추가, MAPPER에 추가하기 -->
-                        <h4>${b.mi_memname } ( ${b.mi_memid } )</h4>
-                        <h5 id="boarddate">${b.boarddate }</h5>
+                        <h4 th:text="${b.mi_memname }+'('+${b.mi_memid }+')'"></h4>
+                        <h5 id="boarddate" th:text="${b.boarddate }"></h5>
                     </div>
 
                     <!-- <div id="b"> -->
                     <div id="b">
-                        <c:if test="${b.requestboolean==1 }">
-                            <h4><b>담당자 : ${b.responseid }</b></h4>
-                        </c:if>
-                        <h4>${b.boardcontents }</h4>
-                        <c:if test="${b.requestboolean == 1 }">
-                            <c:if test="${b.reqstatus == 0}">
-                                <div class="btn-group" style="float: right;" id="${b.bno }a">
-                                    <input type="hidden" name="req_bno" value="${b.bno}"/>
-                                    <input type="hidden" name="req_groupno" value="${b.groupno}"/>
-                                    <input type="hidden" name="req_reqstatus" value="${b.reqstatus}"/>
+                        <th:block th:if ="${b.requestboolean==1 }">
+                            <h4><b th:text="'담당자 : '+${b.responseid }"></b></h4>
+                        </th:block>
+                        <h4 th:text="${b.boardcontents }"></h4>
+                        <th:block th:if="${b.requestboolean == 1 }">
+                            <th:block th:if="${b.reqstatus == 0}">
+                                <div class="btn-group" style="float: right;" th:id="${b.bno }+'a'">
+                                    <input type="hidden" name="req_bno" th:value="${b.bno}"/>
+                                    <input type="hidden" name="req_groupno" th:value="${b.groupno}"/>
+                                    <input type="hidden" name="req_reqstatus" th:value="${b.reqstatus}"/>
 
                                     <input type="button" value="요청" id="btnra" class="req"/>
                                     <input type="button" value="진행" id="btnia" class="ing"/>
                                     <input type="button" value="종료" id="btnea" class="end"/>
                                 </div>
-                            </c:if>
-                            <c:if test="${b.reqstatus ==1 }">
-                                <div class="btn-group" style="float: right;" id="${b.bno }a">
-                                    <input type="hidden" name="req_bno" value="${b.bno}"/>
-                                    <input type="hidden" name="req_groupno" value="${b.groupno}"/>
-                                    <input type="hidden" name="req_reqstatus" value="${b.reqstatus}"/>
+                            </th:block>
+                            <th:block th:if="${b.reqstatus ==1 }">
+                                <div class="btn-group" style="float: right;" th:id="${b.bno }+'a'">
+                                    <input type="hidden" name="req_bno" th:value="${b.bno}"/>
+                                    <input type="hidden" name="req_groupno" th:value="${b.groupno}"/>
+                                    <input type="hidden" name="req_reqstatus" th:value="${b.reqstatus}"/>
 
                                     <input type="button" value="요청" id="btnrb" class="req"/>
                                     <input type="button" value="진행" id="btnib" class="ing"/>
                                     <input type="button" value="종료" id="btneb" class="end"/>
 
                                 </div>
-                            </c:if>
-                            <c:if test="${b.reqstatus ==2 }">
-                                <div class="btn-group" style="float: right;" id="${b.bno }a">
-                                    <input type="hidden" name="req_bno" value="${b.bno}"/>
-                                    <input type="hidden" name="req_groupno" value="${b.groupno}"/>
-                                    <input type="hidden" name="req_reqstatus" value="${b.reqstatus}"/>
+                            </th:block>
+                            <th:block th:if="${b.reqstatus ==2 }">
+                                <div class="btn-group" style="float: right;" th:id="${b.bno }+'a'">
+                                    <input type="hidden" name="req_bno" th:value="${b.bno}"/>
+                                    <input type="hidden" name="req_groupno" th:value="${b.groupno}"/>
+                                    <input type="hidden" name="req_reqstatus" th:value="${b.reqstatus}"/>
 
                                     <input type="button" value="요청" id="btnrc" class="req"/>
                                     <input type="button" value="진행" id="btnic" class="ing"/>
                                     <input type="button" value="종료" id="btnec" class="end"/>
                                 </div>
-                            </c:if>
-                            <%-- <h5>요청진행상태 : ${b.reqstatus }</h5> --%>
-                        </c:if>
+                            </th:block>
+                          <!--  <%&#45;&#45; <h5>요청진행상태 : ${b.reqstatus }</h5> &#45;&#45;%>-->
+                        </th:block>
 
-                        <c:if test="${b.filename != null }">
-                            <%-- <a href="download?filename="+${b.filename }><h5>파일명 : ${b.filename }</h5></a> --%>
-                            <h5>파일명 : <input type="button" value="${b.filename }" class="file"/></h5>
-                        </c:if>
+                        <th:block th:if="${b.filename != null }">
+                          <!--  <%&#45;&#45; <a href="download?filename="+${b.filename }><h5>파일명 : ${b.filename }</h5></a> &#45;&#45;%>-->
+                            <h5>파일명 : <input type="button" th:value="${b.filename }" class="file"/></h5>
+                        </th:block>
 
                     </div>
                     <div id="c">
                         <div id="c1">
-                            <input type="hidden" name="bno" value="${b.bno}"/>
-                            <input type="hidden" name="groupno" value="${b.groupno}"/>
-                            <input type="hidden" name="memberid" value="${b.mi_memid}"/>
+                            <input type="hidden" name="bno" th:value="${b.bno}"/>
+                            <input type="hidden" name="groupno" th:value="${b.groupno}"/>
+                            <input type="hidden" name="memberid" th:value="${b.mi_memid}"/>
                             <input type="button" value="댓글" class="re" />
 
                             <img src="/resources/assets/img/bookmark_before.png" id="bk" class="lh"/>
                         </div>
                         <div class="c2" >
-                            <input type="hidden" name="bno" value="${b.bno }"/>
-                            <input type="hidden" name="groupno" value="${b.groupno}"/>
+                            <input type="hidden" name="bno" th:value="${b.bno }"/>
+                            <input type="hidden" name="groupno" th:value="${b.groupno}"/>
                             <input type="button" class="option2"/>
                             <!-- <input type="button" value="more" class="option" onclick="optiontest()"/> -->
                             <!-- <button class="option">
@@ -567,38 +567,38 @@
                             <div id="${b.bno }d" class="sub2">
                                 <ul>
                                     <li>
-                                        <input type="hidden" name="bno" value="${b.bno }"/>
-                                        <input type="hidden" name="groupno" value="${b.groupno}"/>
-                                        <c:if test="${b.boardnotice==0 }">
-                                            <input type="button" value="공지등록" class="noti"/>
+                                        <input type="hidden" name="bno" th:value="${b.bno }"/>
+                                        <input type="hidden" name="groupno" th:value="${b.groupno}"/>
+                                        <th:block th:if ="${b.boardnotice==0 }">
+                                            <input type="button" value="공지등록" th:class="noti"/>
                                             <input type="button" value="수정하기" class="modi"/>
                                             <input type="button" value="삭제하기" class="del"/>
-                                        </c:if>
-                                        <c:if test="${b.boardnotice==1 }">
+                                        </th:block>
+                                        <th:block th:if="${b.boardnotice==1 }">
                                             <input type="button" value="공지취소" class="noti"/>
                                             <input type="button" value="수정하기" class="modi"/>
                                             <input type="button" value="삭제하기" class="del"/>
-                                        </c:if>
+                                        </th:block>
                                     </li>
                                 </ul>
                             </div>
                         </div><!--c2 end  -->
                     </div><!-- c end -->
 
-                    <div class="e" id="${b.bno }">
+                    <div class="e" th:id="${b.bno }">
                         <!-- 댓글 div -->
                     </div>
 
                     <div id="d">
-                        <input type="hidden" name="bno" value="${b.bno }"/>
-                        <input type="hidden" name="groupno" value="${b.groupno }"/>
-                        <%-- <input type="hidden" name="categoryno" value="${b.categoryno }"/> --%>
-                        <input type="text" name="" id="retext" placeholder=" 댓글을 입력하세요" />
+                        <input type="hidden" name="bno" th:value="${b.bno }"/>
+                        <input type="hidden" name="groupno" th:value="${b.groupno }"/>
+                     <!--   <%&#45;&#45; <input type="hidden" name="categoryno" value="${b.categoryno }"/> &#45;&#45;%>-->
+                        <input type="text" name="" th:id="retext" placeholder=" 댓글을 입력하세요" />
                         <input type="button" value="등록" class="submit"/>
                     </div>
 
                 </div>
-            </c:forEach>
+            </th:block>
         </div>
     </div> <!-- section end -->
 </div>

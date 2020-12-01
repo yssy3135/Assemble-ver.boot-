@@ -31,7 +31,7 @@
 <script th:inline="javascript">
 
 
-    var memberno = /*[[${param.memberno}]]*/;
+    var memberno = [[${session.memberno}]];
     console.log(memberno);
     $(document).ready(function() {
 

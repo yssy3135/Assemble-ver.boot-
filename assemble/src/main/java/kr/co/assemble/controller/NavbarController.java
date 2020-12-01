@@ -5,8 +5,10 @@ import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
+import kr.co.assemble.repository.CategoryDAOImple;
 import kr.co.assemble.repository.GroupDAO;
 import kr.co.assemble.repository.CategoryDAO;
+import kr.co.assemble.repository.GroupDAOImple;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -21,6 +23,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 @Controller
 public class NavbarController {
 
+
 	@Autowired
 	GroupDAO gdao;
 	@Autowired
@@ -29,16 +32,17 @@ public class NavbarController {
 	
 	//카테고리 전체 조회
 
-	@RequestMapping(value = "/assemble.io/{mi_assemblename}/header")	
-	public String categoryList(@PathVariable("mi_assemblename")String assemblename,
-			HttpServletRequest request, Model model) {
-		
+	@RequestMapping(value = "/assemble.io/{mi_assemblename}/header/{path}")
+	public String categoryList(@PathVariable("mi_assemblename") String assemblename,@PathVariable("path") String path,
+							  HttpServletRequest request, Model model) {
+		System.out.println("이동"+path);
 		//session 받아서 assemble명 바꾸기
 		//assemblename = (String) session.getAttribute("mi_assembleName");
-		HttpSession session = request.getSession();
-		int memberNo = Integer.parseInt(request.getParameter("memberno"));
-
 		//System.out.println(assemblename);
+
+		HttpSession session = request.getSession();
+		System.out.println((int)session.getAttribute("memberno"));
+		int memberNo =  (int)session.getAttribute("memberno");
 		CategoryDTO dto = new CategoryDTO();
 		dto.setMemberno(memberNo);
 		dto.setAssemblename(assemblename);
@@ -59,8 +63,8 @@ public class NavbarController {
 		System.out.println(list2);
 //		model.addAttribute("memberno", memberNo);
 
-
-		return "include/header";
+		path = path.replaceAll("`","/");
+		return path;
 
 	}
 	
@@ -69,5 +73,5 @@ public class NavbarController {
 		
 		return "include/header";
 	}
-	
+
 }

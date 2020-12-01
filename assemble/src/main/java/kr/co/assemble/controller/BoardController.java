@@ -3,12 +3,14 @@ package kr.co.assemble.controller;
 import java.util.List;
 
 import javax.mail.Session;
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import kr.co.assemble.repository.BoardDAO;
 import kr.co.assemble.repository.ComposedDAO;
 import kr.co.assemble.repository.GroupSelectListDAO;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -78,7 +80,8 @@ public class BoardController {
 		//그룹별 정보, 구성원 정보(Groups_Memberinfo_Composed_DTO)
 		@RequestMapping("/assemble.io/{mi_assemblename}/g/{groupno}/wall")
 		public String groupBoard(@PathVariable("groupno")int groupno, 
-								@PathVariable("mi_assemblename") String assemblename, Model model){	
+								@PathVariable("mi_assemblename") String assemblename, Model model){
+
 			//그룹장 이름 출력
 			String list = cdao.selectGroupMastername(groupno);
 			model.addAttribute("mastername", list);
@@ -122,8 +125,11 @@ public class BoardController {
 		    List<GroupFileDTO> filelist = gslDao.groupFileName(gfDto);
 		    model.addAttribute("filelist", filelist);
 
+
+
+		    String path = "board`wall";
 			//System.out.println(groupno);-+
-			return "board/wall";
+			return "forward:/assemble.io/"+assemblename+"/header/"+path;
 		}
 	
 		

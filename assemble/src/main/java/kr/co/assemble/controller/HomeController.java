@@ -39,7 +39,7 @@ public class HomeController {
 	@RequestMapping(value = "/assemble.io/{mi_assemblename}/home")
 	public String selectMyGroup(@PathVariable("mi_assemblename") String assemblename,
 								@RequestParam(value = "memberno") int memberno, Model model, HttpServletRequest request){
-		
+
 		//assemblename = (String) session.getAttribute("mi_assembleName");
 		
 		
@@ -52,6 +52,7 @@ public class HomeController {
 
 		//====================================================\
 		//assemblename = (String) session.getAttribute("mi_assembleName");
+/*
 		int memberNo = Integer.parseInt(request.getParameter("memberno"));
 		//System.out.println(assemblename);
 
@@ -67,11 +68,12 @@ public class HomeController {
 		groupdto.setMemberno(memberNo);
 		List<GroupDTO> list2 = gdao.grouplist(groupdto);
 		model.addAttribute("groupList", list2);
+*/
 
 
 
 
-		return HOME;
+		return "forward:/assemble.io/"+assemblename+"/header/home";
 	}
 
 
