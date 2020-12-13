@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<html  xmlns:th="http://www.thymeleaf.org">
 <head th:fragment="header">
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -28,77 +28,9 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-<script th:inline="javascript">
-
-
-    var memberno = [[${session.memberno}]];
-    console.log(memberno);
-    $(document).ready(function() {
-
-
-
-        console.log(memberno);
-        console.log(membemi_assemblename);
-
-        // $.ajax({
-        //     type:"post",
-        //     url : "/assemble.io/"+membemi_assemblename+"/header",
-        //     data :"memberno="+memberno,
-        //     success : function(data){
-        //         console.log("성공")
-        //         console.log(data);
-        //         // location.reload();
-        //         $("#container").load(window.location.href + "#container");
-        //     },
-        //     error: function(data){
-        //         alert("에러가 발생했습니다.");
-        //         return false;
-        //     }
-        // });
-
-
-        $("#category").click(function(){
-            location.href="/makeCategory";
-        });
-
-        $(".icon").click(function(){
-
-
-            var value = document.getElementById("search").value;
-
-            if(value != ""){
-                document.location.href = "/searchBoard?value="+value+"&assemble=${mi_assemblename }";
-
-            }else{
-                alert("검색어를 입력해주세요");
-            }
-
-
-
-        });
-
-        $(".sub-menu").click(function(){
-
-            if(this.childNodes[5].style.display == "none" ){
-
-                this.childNodes[5].style.display = "block"
-            }else{
-                this.childNodes[5].style.display = "none" ;
-            }
-
-
-
-        });
-
-
-
-    });
-
-
-</script>
+<script src="/header.js" th:inline="javascript"></script>
 
 <body>
-
 <section id="container" >
     <!-- **********************************************************************************************************************************************************
     TOP BAR CONTENT & NOTIFICATIONS
@@ -106,7 +38,7 @@
     <!--header start -->
     <header class="header black-bg">
         <!--logo start-->
-        <a th:href="'/assemble.io/'+${mi_assemblename}+'/home?memberno='+${memberno}" class="logo">
+        <a th:href="'/assemble.io/'+${mi_assemblename}+'/home?memberno='+${session.memberno}" class="logo">
             <img src="/resources/assets/img/assemble2.png" id="logo">
             <b class="teamname"> : </b>
             <b class="teamname" th:text="${mi_assemblename }"></b>
@@ -166,9 +98,6 @@
                      </a>
                  </li> -->
 
-                <li class="sub-menu">
-                    <input type="button" value="" id="side"/>
-                </li>
 
                 <th:block th:each="c:${categoryList}" >
                     <li class="sub-menu">

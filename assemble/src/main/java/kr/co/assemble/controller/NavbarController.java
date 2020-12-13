@@ -43,6 +43,7 @@ public class NavbarController {
 		HttpSession session = request.getSession();
 		System.out.println((int)session.getAttribute("memberno"));
 		int memberNo =  (int)session.getAttribute("memberno");
+//		model.addAttribute("memberno",memberNo);
 		CategoryDTO dto = new CategoryDTO();
 		dto.setMemberno(memberNo);
 		dto.setAssemblename(assemblename);

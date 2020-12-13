@@ -25,6 +25,7 @@ import kr.co.assemble.dto.GroupFileDTO;
 import kr.co.assemble.dto.Groupboard_Memberinfo_FileDTO;
 import kr.co.assemble.dto.searchDTO;
 import kr.co.assemble.dto.searchParamDTO;
+import org.springframework.web.servlet.ModelAndView;
 
 
 @Controller
@@ -128,6 +129,10 @@ public class BoardController {
 
 
 		    String path = "board`wall";
+
+			ModelAndView mv = new ModelAndView();
+
+
 			//System.out.println(groupno);-+
 			return "forward:/assemble.io/"+assemblename+"/header/"+path;
 		}

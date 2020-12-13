@@ -133,7 +133,6 @@
             $(".sub2").hide(); //처음에는 안보이게
 
             $(".option2").click(function(){
-
                 var bno = this.parentNode.childNodes[1].value + "d";
                 var groupno = this.parentNode.childNodes[3].value;
                 console.log(bno);
@@ -564,7 +563,7 @@
                             <!-- <button class="option">
                                 <img src="/resources/assets/img/more.png" id="more" />
                             </button> -->
-                            <div id="${b.bno }d" class="sub2">
+                            <div th:id="${b.bno }+'d'" class="sub2">
                                 <ul>
                                     <li>
                                         <input type="hidden" name="bno" th:value="${b.bno }"/>
