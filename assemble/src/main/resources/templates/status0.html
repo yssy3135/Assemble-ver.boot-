@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<th:block th:include ="include/header" ></th:block>
+<head>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <!-- js -->
+    <script src="/resources/assets/js/jquery.js"></script>
+    <script src="/resources/assets/js/jquery-1.8.3.min.js"></script>
+    <script src="/resources/assets/js/bootstrap.min.js"></script>
+    <script src="/resources/assets/js/jquery.scrollTo.min.js"></script>
+    <!--     common script for all pages -->
+    <script src="/resources/assets/js/common-scripts.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+    <!------ Include the above in your HEAD tag ---------->
+    <link rel="stylesheet" type="text/css" href="/resources/assets/css/hancss/clicklist.css">  	<!-- css 파일 경로  -->
+    <link rel="stylesheet" type="text/css" href="/resources/assets/css/chat_css.css">     <!-- css 파일 경로  -->
+    <link rel="stylesheet" type="text/css" href="/resources/info/css/status0.css">
+
+
+    <script src="/resources/js/status0.js" th:inline="javascript"></script>
+    <meta charset="UTF-8">
+    <title>요청.div</title>
+
+</head>
+<body>
+<div class="div0" style="z-index: -2">
+    <section class="bookmarks-page">
+        <header class="page-header bookmarks-page__header">
+
+            <h2 class="page-header__title">
+                <span>요청</span>											<!-- div 제목  -->
+                <span class="page-header__total-count"></span>				<!-- 게시물보이는 갯수 -->
+            </h2>
+
+            <div class="page-header__info">
+
+                <div class="page__options bookmarks-page__options">
+
+                    <div class="page__options mentions-page__options">
+                        <a href="/myRequest"><button class="option-button1">모든상태</button></a>
+                        <th:block th:if="${status}==0">
+                            <a href="/myReqStatus?status=0"><input type="button" th:value="요청" class="option-button2" autofocus = "autofocus"/></a>
+                            <a href="/myReqStatus?status=2"><input type="button" th:value="완료" class="option-button4" /></a>
+                            <a href="/myReqStatus?status=1"><input type="button" th:value="진행" class="option-button3" /></a>
+                        </th:block>
+                        <th:block th:if="${status}==1">
+                            <a href="/myReqStatus?status=0"><input type="button" th:value="요청" class="option-button2" /></a>
+                            <a href="/myReqStatus?status=2"><input type="button" th:value="완료" class="option-button4" /></a>
+                            <a href="/myReqStatus?status=1"><input type="button" th:value="진행" class="option-button3" autofocus = "autofocus" /></a>
+                        </th:block>
+                        <th:block th:if="${status}==2">
+                            <a href="/myReqStatus?status=0"><input type="button" th:value="요청" class="option-button2" /></a>
+                            <a href="/myReqStatus?status=2"><input type="button" th:value="완료" class="option-button4" autofocus = "autofocus"/></a>
+                            <a href="/myReqStatus?status=1"><input type="button" th:value="진행" class="option-button3" /></a>
+                        </th:block>
+                    </div>
+
+                </div>
+
+
+                <form class="search-field bookmarks-page__search">
+                    <fieldset>
+                        <legend class="screen-out">요청 검색</legend>
+                        <input type="text" class="search-field__input" autocomplete="off" autocapitalize="off" name="q" title="검색어 입력" placeholder="요청 검색" value="">
+
+                        <button class="search-field__search-button" type="submit">
+                            <i class="ico ico-search" aria-hidden="true">
+                                <svg width="16px" height="16px" viewBox="0 0 15 14" version="1.1">
+                                    <g id="search" stroke="none" fill="#565A5F" fill-rule="evenodd">
+                                        <path d="M9.9603736,10.3329493 C8.91643607,11.0870077 7.60676898,11.5357143 6.18487913,11.5357143 C2.77379116,11.5357143 0.00855799453,8.95335668 0.00855799453,5.76785714 C0.00855799453,2.5823576 2.77379116,0 6.18487913,0 C9.5959671,0 12.3612003,2.5823576 12.3612003,5.76785714 C12.3612003,7.09571193 11.8807175,8.31876567 11.0732587,9.29366358 L15,12.9607143 L13.8871149,14 L9.9603736,10.3329493 Z M6.18487913,10.3214286 C8.87784331,10.3214286 11.0609221,8.2827252 11.0609221,5.76785714 C11.0609221,3.25298909 8.87784331,1.21428571 6.18487913,1.21428571 C3.49191494,1.21428571 1.30883613,3.25298909 1.30883613,5.76785714 C1.30883613,8.2827252 3.49191494,10.3214286 6.18487913,10.3214286 Z"></path>
+                                    </g>
+                                </svg>
+                            </i>
+                        </button>
+
+
+                    </fieldset>
+                </form>
+
+            </div>
+        </header>
+
+
+        <div class="scroll-container scroll-container--window undefined" tabindex="-1" id="diva">
+            <div class="bookmarks-page__list-wrap">
+                <div class="sdf active">
+                    <th:block th:each="b:${list}">
+                        <div id="board">
+                            <div id="a">
+                                <a th:href="'/assemble.io/'+${session.mi_assemblename}+'/g/'+${b.groupno }+'/wall'"><h4 th:text="${b.groupname }"></h4></a>
+                            </div>
+
+                            <div id="b">
+                                <h4 th:text="${b.mi_memname }+'('+${b.mi_memid }+')'"></h4>
+                                <h5 id="boarddate" th:text="${b.boarddate }"></h5>
+                            </div>
+                            <div id="c">
+                                <th:block  th:if= "${b.requestboolean} ==1 ">
+                                    <h4><b th:text="'담당자 : '+${b.responseid }"></b></h4>
+                                </th:block>
+                                <h4 th:text="${b.boardcontents }"></h4>
+
+                                <th:block  th:if= "${b.requestboolean}==1 ">
+                                    <th:block  th:if= "${b.reqstatus} ==0 ">
+                                        <div class="btn-group" style="float: right;" th:id="${b.bno }+'a'">
+                                            <input type="hidden" name="req_bno" th:value="${b.bno}"/>
+                                            <input type="hidden" name="req_groupno" th:value="${b.groupno}"/>
+                                            <input type="hidden" name="req_reqstatus" th:value="${b.reqstatus}"/>
+
+                                            <input type="button" value="요청" id="btnra" class="req"/>
+                                            <input type="button" value="진행" id="btnia" class="ing"/>
+                                            <input type="button" value="완료" id="btnea" class="end"/>
+                                        </div>
+                                    </th:block>
+                                </th:block>
+                                <th:block  th:if="${b.reqstatus} ==1 ">
+                                    <div class="btn-group" style="float: right;" th:id="${b.bno }+'a'">
+                                        <input type="hidden" th:name="req_bno" th:value="${b.bno}"/>
+                                        <input type="hidden" th:name="req_groupno" th:value="${b.groupno}"/>
+                                        <input type="hidden" th:name="req_reqstatus" th:value="${b.reqstatus}"/>
+
+                                        <input type="button" value="요청" id="btnrb" class="req"/>
+                                        <input type="button" value="진행" id="btnib" class="ing"/>
+                                        <input type="button" value="완료" id="btneb" class="end"/>
+
+                                    </div>
+                                </th:block>
+                                <th:block  th:if="${b.reqstatus} ==2 ">
+                                    <div class="btn-group" style="float: right;" th:id="${b.bno }+'a'">
+                                        <input type="hidden" th:name="req_bno" th:value="${b.bno}"/>
+                                        <input type="hidden" th:name="req_groupno" th:value="${b.groupno}"/>
+                                        <input type="hidden" th:name="req_reqstatus" th:value="${b.reqstatus}"/>
+
+                                        <input type="button" value="요청" id="btnrc" class="req"/>
+                                        <input type="button" value="진행" id="btnic" class="ing"/>
+                                        <input type="button" value="완료" id="btnec" class="end"/>
+                                    </div>
+                                </th:block>
+
+                                </c:if>
+
+                                <th:block th:if="${b.filename} != null ">
+                                    <h4 th:text="'파일명 : '+${b.filename }"></h4>
+                                </th:block>
+                            </div>
+
+                            <div id="d">
+
+                                <div id="d1">
+                                    <input type="hidden" name="bno" th:value="${b.bno}"/>
+                                    <input type="hidden" name="groupno" th:value="${b.groupno}"/>
+
+                                    <input type="button" value="댓글" class="re" />
+
+                                    <img src="/resources/assets/img/like.png" class="lh">
+                                    <img src="/resources/assets/img/hate.png" class="lh">
+                                    <img src="/resources/assets/img/bookmark_before.png" id="bk" class="lh" onclick="imgchange()"/>
+                                </div>
+
+                            </div>
+
+                            <!-- 공지글 일시는 공지취소 -->
+
+                            <div class="e" th:id="${b.bno }">
+                                <!-- 댓글 div -->
+                            </div>
+
+                            <div id="f">
+                                <input type="hidden" name="bno" th:value="${b.bno }" />
+                                <input type="hidden" name="groupno" th:value="${b.groupno }" />
+
+                                <input type="text"  id="retext" placeholder=" 댓글을 입력하세요" />
+                                <input type="button" value="등록" class="submit" />
+                            </div>
+                        </div>
+
+                    </th:block>
+                </div>
+
+                <!-- <div class="sdf active">
+                    <h2>모든 상태 게시물~</h2>
+                </div>
+                <div class="sdf active">
+                    <h2>모든 상태 게시물~</h2>
+                </div> -->
+
+            </div>
+        </div>
+
+        <div class="paginated-list-footer">
+
+            <div class="no-content-placeholder no-content-placeholder--visible" id="contents">
+                <i class="ico ico-blank" aria-hidden="true">
+                    <svg width="120px" height="120px" viewBox="0 0 120 120" version="1.1">
+                        <g id="blank" stroke="none" stroke-width="1" fill="#F5F5F5" fill-rule="evenodd">
+                            <!-- 이미지 경로~  -->
+                            <path d="M60,120 L60,120 C26.862915,120 0,93.137085 0,60 C0,26.862915 26.862915,0 60,0 C93.137085,0 120,26.862915 120,60 C120,93.137085 93.137085,120 60,120 L60,120 L60,120 Z M60,111 L60,111 C88.1665222,111 111,88.1665222 111,60 C111,31.8334778 88.1665222,9 60,9 C31.8334778,9 9,31.8334778 9,60 C9,88.1665222 31.8334778,111 60,111 L60,111 L60,111 Z M43.5,54 C47.6421356,54 51,50.6421356 51,46.5 C51,42.3578644 47.6421356,39 43.5,39 C39.3578644,39 36,42.3578644 36,46.5 C36,50.6421356 39.3578644,54 43.5,54 L43.5,54 Z M76.5,54 C80.6421356,54 84,50.6421356 84,46.5 C84,42.3578644 80.6421356,39 76.5,39 C72.3578644,39 69,42.3578644 69,46.5 C69,50.6421356 72.3578644,54 76.5,54 L76.5,54 Z M31.5,74 C31.5,71.790861 33.3000391,70 35.5081293,70 L84.4918707,70 C86.7054994,70 88.5,71.7953562 88.5,74 C88.5,76.209139 86.6999609,78 84.4918707,78 L35.5081293,78 C33.2945006,78 31.5,76.2046438 31.5,74 L31.5,74 Z"></path>
+                        </g>
+                    </svg>
+                </i>
+                <p class="no-content-placeholder__message">요청 받은 게시물이 없습니다.</p>
+            </div>
+
+            <!-- 게시물이 생기면 이걸로 바꾸기~~ css 바꾸기~~ -->
+            <div class="paginated-list-footer__no-more-label" id="nocontents">
+                <span>더 이상 없음</span>
+            </div>
+
+        </div>
+
+    </section>
+</div>
+</body>
+</html>

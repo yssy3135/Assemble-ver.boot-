@@ -35,10 +35,11 @@ public class NavbarController {
 	@RequestMapping(value = "/assemble.io/{mi_assemblename}/header/{path}")
 	public String categoryList(@PathVariable("mi_assemblename") String assemblename,@PathVariable("path") String path,
 							  HttpServletRequest request, Model model) {
-		System.out.println("이동"+path);
+
 		//session 받아서 assemble명 바꾸기
 		//assemblename = (String) session.getAttribute("mi_assembleName");
 		//System.out.println(assemblename);
+
 
 		HttpSession session = request.getSession();
 		System.out.println((int)session.getAttribute("memberno"));
@@ -64,7 +65,10 @@ public class NavbarController {
 		System.out.println(list2);
 //		model.addAttribute("memberno", memberNo);
 
+
+
 		path = path.replaceAll("`","/");
+
 		return path;
 
 	}

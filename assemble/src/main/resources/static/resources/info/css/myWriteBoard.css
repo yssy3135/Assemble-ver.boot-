@@ -1,0 +1,109 @@
+#main {
+    width: 50%;
+    height: 100%;
+    position: absolute;
+    /*     background: white; */
+    margin-top: 5%;
+    margin-bottom: 5%;
+    margin-left: 25%;
+}
+
+#board {
+    padding: 20px;
+    border: 2px solid #F2F2F2;
+    background-color: white;
+    margin-bottom: 30px;
+    border: 1px solid #CCCCCC;
+    /* #F2F2F2; */
+}
+
+#a, #b {
+    border-bottom: 1px solid #CCCCCC;
+}
+
+#f {
+    margin-top: 10px;
+}
+
+#retext {
+    width: 91%;
+    border: 1px solid #CCCCCC;
+}
+
+#re {
+    background-color: white;
+    border: none;
+    border: 1px solid #CCCCCC;
+    margin-right: 1%;
+}
+
+.lh{
+    width: 22px;
+    margin-left: 1.5%;
+}
+
+#more{
+    width: 22px;
+}
+
+.submit{
+    margin-left: 2%;
+}
+
+
+#boarddate {
+    margin-left: 80%;
+}
+
+.submit {
+    margin-left: 2%;
+}
+
+#boarddate{
+    margin-left: 80%;
+}
+#d1{
+    width: 70%;
+    display: inline;
+    float: left;
+}
+#d2{
+    margin-left: 82%;
+}
+
+.menubtn{
+    border: none;
+    background-color: white;
+    border: 1px solid #CCCCCC;
+}
+#btn-group {margin: 0;}
+#btn-group {margin: 0;}
+#btnra, #btnrb, #btnrc,
+#btnia, #btnib, #btnic,
+#btnea, #btneb, #btnec {
+    border: none;
+    color: white;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    width: 70px;
+    height: 25px;
+    float: left;
+}
+
+#btnia, #btnea, #btnrb, #btneb, #btnrc, #btnic{
+    background-color: #EAEAEA;
+}
+
+#btnra {
+    background-color: red;
+}
+
+#btnib {
+    background-color: green; ;
+}
+
+#btnec {
+    background-color: gray;
+}

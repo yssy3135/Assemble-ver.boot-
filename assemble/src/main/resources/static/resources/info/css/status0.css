@@ -1,0 +1,123 @@
+#board {
+    padding: 20px;
+    border: 2px solid #F2F2F2;
+    background-color: white;
+    margin-bottom: 30px;
+    border: 1px solid #CCCCCC;
+    /* #F2F2F2; */
+}
+
+#a, #b {
+    border-bottom: 1px solid #CCCCCC;
+}
+
+#f {
+    margin-top: 10px;
+}
+
+#retext {
+    width: 91%;
+    border: 1px solid #CCCCCC;
+}
+
+#re {
+    background-color: white;
+    border: none;
+    border: 1px solid #CCCCCC;
+    margin-right: 1%;
+}
+
+.lh{
+    width: 22px;
+    margin-left: 1.5%;
+}
+
+#more{
+    width: 22px;
+}
+
+.submit{
+    margin-left: 2%;
+}
+
+
+#boarddate {
+    margin-left: 80%;
+}
+
+.submit {
+    margin-left: 2%;
+}
+
+#boarddate{
+    margin-left: 80%;
+}
+#d1{
+    width: 70%;
+}
+.d2{
+    margin-left: 82%;
+}
+
+.menubtn{
+    border: none;
+    background-color: white;
+    border: 1px solid #CCCCCC;
+}
+
+/* 댓글 */
+#s0{
+    border: 1px solid #CCCCCC;
+    font-size: 14px;
+}
+
+#s1 {
+    border-bottom: 1px solid #CCCCCC;
+    background-color: #F2F2F2;
+    padding: 0.6%;
+
+}
+
+#s1a {
+    display: inline;
+    float: left;
+    margin-right: 66%;
+
+}
+#s2{
+    padding: 1%;
+}
+
+/* 요청 */
+#btn-group {margin: 0;}
+#btn-group {margin: 0;}
+#btnra, #btnrb, #btnrc,
+#btnia, #btnib, #btnic,
+#btnea, #btneb, #btnec {
+    border: none;
+    color: white;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    width: 70px;
+    height: 25px;
+    float: left;
+}
+
+#btnia, #btnea, #btnrb, #btneb, #btnrc, #btnic{
+    background-color: #EAEAEA;
+}
+
+#btnra {
+    background-color: red;
+}
+
+#btnib {
+    background-color: green; ;
+
+}
+
+#btnec {
+    background-color: gray;
+}

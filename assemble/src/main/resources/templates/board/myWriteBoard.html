@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<th:block th:include ="include/header" ></th:block>
+<head>
+    <meta charset="UTF-8">
+    <title>home.html</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="/resources/js/myWriteBoard.js" th:inline="javascript"></script>
+    <link href="/resources/info/css/myWriteBoard.css" rel="stylesheet">
+</head>
+<body>
+<div id="main" style="z-index: -2">
+    <br />
+    <h3>내글(몇개)</h3>
+    <th:block th:each="b:${mywirtelist}">
+        <div id="board">
+            <div id="a">
+                <a th:href="'/assemble.io/'+${session.mi_assemblename}+'/g/'+${b.groupno }+'/wall'"><h4 th:text="${b.groupname}"></h4></a>
+            </div>
+
+            <div id="b">
+             <!--   <%&#45;&#45; <h3>${tl.mi_assemblename }</h3> &#45;&#45;%>-->
+                <h4 th:text="${b.mi_memname }+'('+${b.mi_memid } +')'"></h4>
+                <h5 id="boarddate" th:text="${b.boarddate}"></h5>
+            </div>
+            <div id="c">
+                <h4 th:text="${b.boardcontents }"></h4>
+
+                <th:block th:if="${b.requestboolean} == 1">
+
+                    <th:block th:if="${b.reqstatus == 0}">
+                        <div class="btn-group" style="float: right;" th:id="${b.bno }+'a'">
+                            <input type="hidden" name="req_bno" th:value="${b.bno}"/>
+                            <input type="hidden" name="req_groupno" th:value="${b.groupno}"/>
+                            <input type="hidden" name="req_status" th:value="${b.reqstatus}"/>
+                            <input type="button" value="요청" th:id="btnra" th:class="reqa"/>
+                            <input type="button" value="진행" th:id="btnia" th:class="inga"/>
+                            <input type="button" value="종료" th:id="btneb" th:class="enda"/>
+                        </div>
+                    </th:block>
+                    <th:block th:if="${b.reqstatus == 1}">
+                        <div class="btn-group" style="float: right;" th:id="${b.bno }+'b'">
+                            <input type="hidden" name="req_bno" th:value="${b.bno}"/>
+                            <input type="hidden" name="req_groupno" th:value="${b.groupno}"/>
+                            <input type="hidden" name="req_status" th:value="${b.reqstatus}"/>
+                            <input type="button" value="요청" id="btnrb" class="reqb"/>
+                            <input type="button" value="진행" id="btnib" class="ingb"/>
+                            <input type="button" value="종료" id="btneb" class="endb"/>
+
+                        </div>
+                    </th:block>
+                    <th:block th:if="${b.reqstatus == 2}">
+                        <div class="btn-group" style="float: right;" th:id="${b.bno }+'c'">
+                            <input type="hidden" name="req_bno" th:value="${b.bno}"/>
+                            <input type="hidden" name="req_groupno" th:value="${b.groupno}"/>
+                            <input type="hidden" name="req_status" th:value="${b.reqstatus}"/>
+                            <input type="button" value="요청" id="btnrc" class="reqc"/>
+                            <input type="button" value="진행" id="btnic" class="ingc"/>
+                            <input type="button" value="종료" id="btnec" class="endc"/>
+                        </div>
+                    </th:block>
+                   <!-- <%&#45;&#45; <h5>요청진행상태 : ${b.reqstatus }</h5> &#45;&#45;%>-->
+                </th:block>
+
+                <h5 th:text="'좋아요 : '+${b.boardlike }"></h5>
+                <h5 th:text="'좋아요 : '+${b.boardhate }"></h5>
+                <th:block th:if="${b.filename != null }">
+                    <h6 th:text="'파일명 : '+${b.filename }"></h6>
+                </th:block>
+            </div>
+
+            <div id="d">
+
+                <div id="d1">
+                    <input type="button" value="댓글" class="re" />
+
+                    <img src="/resources/assets/img/like.png" class="lh">
+
+                    <img src="/resources/assets/img/hate.png" class="lh">
+
+                    <img src="/resources/assets/img/bookmark_before.png" id="bk" class="lh" onclick="imgchange()"/>
+                </div>
+                <div id="d2">
+                    <ul class="option">
+                        <li><img src="/resources/assets/img/more.png" id="more" />
+                            <ul class="sub">
+                                <!-- 공지글 일시는 공지취소 -->
+                                <button class="menubtn"><li>글숨기기</li></button>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="e" th:id="${b.bno }">
+                <!-- 댓글 div -->
+            </div>
+
+            <div id="f">
+                <input type="hidden" name="bno" th:value="${b.bno }" />
+                <input type="hidden" name="groupno" th:value="${b.groupno }" />
+                <input type="text" name="" id="retext" placeholder=" 댓글을 입력하세요" />
+                <input type="button" value="등록" class="submit" />
+            </div>
+        </div>
+    </th:block>
+</div>
+<script src="/resources/assets/js/jquery.js"></script>
+<script src="/resources/assets/js/jquery-1.8.3.min.js"></script>
+<script src="/resources/assets/js/bootstrap.min.js"></script>
+
+<script src="/resources/assets/js/jquery.scrollTo.min.js"></script>
+
+<!--     common script for all pages -->
+<script src="/resources/assets/js/common-scripts.js"></script>
+
+</body>
+</html>
