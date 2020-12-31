@@ -1,0 +1,123 @@
+.writebtn {
+    width: 49.5%;
+    height: 50px;
+    border : none;
+}
+
+#writebtn1 {
+    background-color: white;
+
+}
+
+#writebtn2 {
+    background-color: #D5D5D5;
+}
+
+#writebtn3 {
+    background-color: #D5D5D5;
+}
+
+
+
+
+
+.writediv {
+    width:100%; height: 100%;
+    background-color: white;
+
+}
+
+#writediv1{
+
+    display: block;
+}
+
+#writediv3{
+    display: none;
+}
+
+.buttonbo {
+
+    background-color: #4CAF50; /* Green */
+    border: none;
+    color: white;
+
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    /*   margin-top : 50px; */
+    transition-duration: 0.4s;
+    cursor: pointer;
+    height : 40px;
+    width : 100px;
+
+    background-color: white;
+    color: black;
+    border: 2px solid #e7e7e7;
+
+}
+
+.button:hover {background-color: #e7e7e7;}
+
+.btn-group {margin: 0;}
+.btn-group .button2 {
+    background-color: #EAEAEA; /* Green */
+    border: none;
+    color: white;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+
+    width: 70px;
+    height: 25px;
+    float: left;
+}
+.btn-group .button3 {
+    background-color: #FF0000;
+    border: none;
+    color: white;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+
+    width: 70px;
+    height: 25px;
+    float: left;
+}
+
+
+
+
+.input-file {
+    display: inline-block;
+}
+
+.input-file [type="file"] {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    border: 0 none;
+}
+.input-file .file-label {
+    display: inline-block;
+    min-width: 53px;
+    height: 27px;
+    line-height: 24px;
+    padding: 0 10px;
+    border-radius: 2px;
+    font-size: 13px;
+    background-color: #333;
+    color: #fff;
+    text-align: center;
+}
+.input-file .file-name {
+
+    width: 90%;
+}

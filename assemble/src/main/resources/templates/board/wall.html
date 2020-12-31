@@ -15,17 +15,17 @@
         <h2 th:text="${groupname }"></h2>
         <h5 th:text="'방장 : '+${mastername }+'( '+${masterid}+' )'"></h5>
         <div id="select">
-            <th:include page="../jinwoo/select.jsp"></th:include>
+            <th:block th:include ="/jinwoo/select.html"></th:block>
         </div>
     </div>
 
     <div id="section">
 
         <div id="insert">
-            <th:include page="../jinwoo/board.jsp"></th:include>
-            <th:include page="../jinwoo/profile.jsp"></th:include>
-            <th:include page="../jinwoo/gallery.jsp"></th:include>
-            <th:include page="../jinwoo/file.jsp"></th:include>
+            <th:block th:include ="/jinwoo/board.html"></th:block>
+            <th:block th:include ="/jinwoo/profile.html"></th:block>
+            <th:block th:include ="/jinwoo/gallery.html"></th:block>
+            <th:block th:include ="/jinwoo/file.html"></th:block>
         </div>
 
         <div id="boarddis" style="display: block;">

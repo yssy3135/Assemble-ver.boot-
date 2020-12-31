@@ -63,7 +63,7 @@ public class NavbarController {
 		List<GroupDTO> list2 = gdao.grouplist(groupdto);	
 		model.addAttribute("groupList", list2);
 		System.out.println(list2);
-//		model.addAttribute("memberno", memberNo);
+		model.addAttribute("memberno", memberNo);
 
 
 

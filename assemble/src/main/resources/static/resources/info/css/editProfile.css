@@ -1,0 +1,17 @@
+body{background-color: none;}
+.main {
+    width: 50%;
+    height: 100%;
+    position: absolute;
+    margin-top: 5%;
+    margin-bottom: 5%;
+    margin-left: 25%;
+}
+.contents {
+    background-color: white;
+    border: 1px solid #CCCCCC;
+    margin: 0;
+    padding: 0;
+    clear: none;
+}
+.modal-header{background-color: #fcfcfc;}
