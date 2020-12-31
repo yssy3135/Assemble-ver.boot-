@@ -1,3 +1,6 @@
+input:focus {
+    outline: none;
+}
 #main {
     width: 50%;
     height: 100%;
@@ -64,10 +67,8 @@
 }
 #d1{
     width: 70%;
-    display: inline;
-    float: left;
 }
-#d2{
+.d2{
     margin-left: 82%;
 }
 
@@ -76,6 +77,31 @@
     background-color: white;
     border: 1px solid #CCCCCC;
 }
+
+/* 댓글 */
+#s0{
+    border: 1px solid #CCCCCC;
+    font-size: 14px;
+}
+
+#s1 {
+    border-bottom: 1px solid #CCCCCC;
+    background-color: #F2F2F2;
+    padding: 0.6%;
+
+}
+
+#s1a {
+    display: inline;
+    float: left;
+    margin-right: 66%;
+
+}
+#s2{
+    padding: 1%;
+}
+
+/* 요청 */
 #btn-group {margin: 0;}
 #btn-group {margin: 0;}
 #btnra, #btnrb, #btnrc,
@@ -102,27 +128,14 @@
 
 #btnib {
     background-color: green; ;
+
 }
 
 #btnec {
     background-color: gray;
 }
-
-/* 댓글 */
-#s0{
-    border: 1px solid #CCCCCC;
-    font-size: 14px;
-}
-#s1 {
-    border-bottom: 1px solid #CCCCCC;
-    background-color: #F2F2F2;
-    padding: 0.6%;
-}
-#s1a {
-    display: inline;
-    float: left;
-    margin-right: 66%;
-}
-#s2{
-    padding: 1%;
+.file{
+    background-color: white;
+    border: none;
+    color: #0100FF;
 }

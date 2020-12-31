@@ -48,6 +48,9 @@ $(function(){
         var bno = this.parentNode.childNodes[1].value;
         var groupno = this.parentNode.childNodes[3].value;
 
+        console.log(bno);
+        console.log(groupno);
+
         $.ajax({
             url: "/assemble.io/{mi_assemblename}/g/{groupno}/selectRecomment",
             type: 'POST',

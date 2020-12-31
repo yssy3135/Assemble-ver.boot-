@@ -47,7 +47,7 @@ public class HomeController {
 		List<Groupboard_Memberinfo_FileDTO> list = dao.selectMyFeed(memberno);
 		model.addAttribute("mainlist", list);
 		System.out.println(list);
-
+		model.addAttribute("memberno",memberno);
 
 		//====================================================\
 		//assemblename = (String) session.getAttribute("mi_assembleName");

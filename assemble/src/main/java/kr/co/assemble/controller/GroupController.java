@@ -78,7 +78,7 @@ public class GroupController {
 		
 		System.out.println(list.get(0).getCategoryname());
 		
-		return "jinwoo/groupMake";
+		return "forward:/assemble.io/"+assemblename+"/header/groupMake";
 	}
 	
 	

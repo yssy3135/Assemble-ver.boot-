@@ -78,7 +78,7 @@ public class RecommentController {
       model.addAttribute("dto", dto);
       model.addAttribute("memberno", memberNo);
       
-      return "redirect:/assemble.io/{mi_assemblename}/home?memberno" + memberNo;
+      return "redirect:/assemble.io/{mi_assemblename}/home?memberno="+ memberNo;
    }
    
    //그룹에서 bno별 댓글 조회  

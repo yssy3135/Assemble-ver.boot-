@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpRequest;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -141,13 +142,15 @@ public class AI_controller {
 
 	// 초대하기
 	@RequestMapping(value="/invited")
-	public ModelAndView invited() {
+	public String invited(HttpSession session) {
 		ModelAndView mv = new ModelAndView();
+		String assemblename = (String) session.getAttribute("mi_assemblename");
 		int ran = new Random().nextInt(9000000)+1000000;
 		System.out.println("invited ran : " + ran);
 		mv.setViewName(INVITED);
 		mv.addObject("ran", ran);
-		return mv;
+
+		return "forward:/assemble.io/"+assemblename+"/header/"+INVITED;
 	}
 
 	// 초대 OK

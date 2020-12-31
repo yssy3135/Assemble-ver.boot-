@@ -1,13 +1,30 @@
+input:focus {
+    outline: none;
+}
 #main {
     width: 50%;
     height: 100%;
     position: absolute;
     /*     background: white; */
-    margin-top: 5%;
+    margin-top: 7%;
     margin-bottom: 5%;
     margin-left: 25%;
-}
 
+}
+#info {
+    border: 2px solid #F2F2F2;
+    background-color: pink;
+    margin-bottom: 15px;
+    padding-bottom: 0px;
+}
+#select {
+    background-color: white;
+}
+#insert {
+    height: 100%;
+    border: 1px solid #CCCCCC;
+    margin-bottom: 30px;
+}
 #board {
     padding: 20px;
     border: 2px solid #F2F2F2;
@@ -16,98 +33,60 @@
     border: 1px solid #CCCCCC;
     /* #F2F2F2; */
 }
-
-#a, #b {
+#a {
     border-bottom: 1px solid #CCCCCC;
 }
-
-#f {
+#b{
+    padding: 1.5%;
+}
+#d {
     margin-top: 10px;
 }
-
 #retext {
     width: 91%;
     border: 1px solid #CCCCCC;
 }
-
-#re {
+.re {
     background-color: white;
     border: none;
     border: 1px solid #CCCCCC;
     margin-right: 1%;
 }
-
-.lh{
+#notice {
+    width: 22px;
+}
+.lh {
     width: 22px;
     margin-left: 1.5%;
 }
-
-#more{
+.more {
     width: 22px;
 }
-
-.submit{
-    margin-left: 2%;
-}
-
-
-#boarddate {
-    margin-left: 80%;
-}
-
 .submit {
     margin-left: 2%;
 }
-
-#boarddate{
+#boarddate {
     margin-left: 80%;
 }
-#d1{
+#c1 {
     width: 70%;
     display: inline;
     float: left;
+    margin-right: 20%;
 }
-#d2{
-    margin-left: 82%;
+#c2 {
+    display: inline;
+    float: left;
+    margin-left: 90%;
 }
-
-.menubtn{
+.sub2{
+    margin-left: 85%;
+}
+.menubtn {
     border: none;
     background-color: white;
     border: 1px solid #CCCCCC;
 }
-#btn-group {margin: 0;}
-#btn-group {margin: 0;}
-#btnra, #btnrb, #btnrc,
-#btnia, #btnib, #btnic,
-#btnea, #btneb, #btnec {
-    border: none;
-    color: white;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    font-size: 16px;
-    width: 70px;
-    height: 25px;
-    float: left;
-}
-
-#btnia, #btnea, #btnrb, #btneb, #btnrc, #btnic{
-    background-color: #EAEAEA;
-}
-
-#btnra {
-    background-color: red;
-}
-
-#btnib {
-    background-color: green; ;
-}
-
-#btnec {
-    background-color: gray;
-}
-
 /* 댓글 */
 #s0{
     border: 1px solid #CCCCCC;
@@ -126,3 +105,49 @@
 #s2{
     padding: 1%;
 }
+#btn-group {margin: 0;}
+#btn-group {margin: 0;}
+#btnra, #btnrb, #btnrc,
+#btnia, #btnib, #btnic,
+#btnea, #btneb, #btnec {
+    border: none;
+    color: white;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    width: 70px;
+    height: 25px;
+    float: left;
+}
+#btnia, #btnea, #btnrb, #btneb, #btnrc, #btnic{
+    background-color: #EAEAEA;
+}
+#btnra {
+    background-color: red;
+}
+#btnib {
+    background-color: green; ;
+}
+#btnec {
+    background-color: gray;
+}
+.option2 {
+    background: url( "/resources/assets/img/more2.png" ) no-repeat;
+    border: none;
+    width: 32px;
+    height: 32px;
+    cursor: pointer;
+}
+.noti, .modi, .del{
+    background-color: white;
+    border: none;
+    border: 1px solid #CCCCCC;
+}
+.file{
+    background-color: white;
+    border: none;
+    color: #0100FF;
+}
+/* .option a{cusor:pointer;}
+.option .hide{display:none;} */

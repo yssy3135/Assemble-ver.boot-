@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<th:block th:include ="include/header" ></th:block>
+<head>
+    <meta charset="UTF-8">
+    <title>invited</title>
+    <script type="text/javascript" src="/resources/info/js/jquery.slim.min.js"></script>
+    <!-- <link type="text/css" rel="stylesheet" href="/resources/info/css/bootstrap.min.css" /> -->
+    <script type="text/javascript" src="/resources/info/js/bootstrap.bundle.min.js"></script>
+
+    <link type="text/css" rel="stylesheet" href="/resources/info/css/invited.css" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script type="text/javascript" src ="/resources/js/invited.js"></script>
+</head>
+<body>
+
+<body>
+<div class="main" style="z-index: -2">
+    <div class="contents">
+        <div class="form-invitation">
+            <div class="title">
+                <h2 class="font-weight-bold"><b>초대하기</b></h2>
+            </div>
+
+            <div class="invitation-form">
+                <form action="invitedOk" method="POST" name="frm">
+
+                    <div class="form-group row">
+
+                        <label for="colFormLabel" class=" col-form-label" id="adr">이메일 주소 <br>&nbsp;(필수)</label>
+                        <input type="email" class="form-control" id="memEmail" name="mi_mememail" placeholder="이메일 주소" required />
+                        <span id="duplicate">
+			             
+			      </span>
+
+                        <br/>
+                        <button class="btn btn-lg btn-block" type="button" id="invi">초대하기</button>
+
+                    </div>
+
+                </form>
+
+            </div>
+        </div>
+    </div>
+
+</div>
+<script src="/resources/assets/js/jquery.js"></script>
+<script src="/resources/assets/js/jquery-1.8.3.min.js"></script>
+<script src="/resources/assets/js/bootstrap.min.js"></script>
+
+<script src="/resources/assets/js/jquery.scrollTo.min.js"></script>
+
+<!--     common script for all pages -->
+<script src="/resources/assets/js/common-scripts.js"></script>
+</body>
+</body>
+</html>
