@@ -35,7 +35,13 @@ input:focus {
 }
 #a {
     border-bottom: 1px solid #CCCCCC;
+    padding:10px;
 }
+
+#a h4{
+    float:left;
+}
+
 #b{
     padding: 1.5%;
 }
@@ -87,7 +93,7 @@ input:focus {
     background-color: white;
     border: 1px solid #CCCCCC;
 }
-/* 댓글 */
+/* ëŒ“ê¸€ */
 #s0{
     border: 1px solid #CCCCCC;
     font-size: 14px;

@@ -62,10 +62,10 @@ $(document).ready(function() {
                 document.frm1.submit();
             }
 
-
-
+    });
 
         $("#btn3").click(function(){
+
             var data = $("#fileInput3").val();
             if(data==""){
                 console.log("not file");
@@ -80,11 +80,6 @@ $(document).ready(function() {
             }
 
         });
-
-
-
-    });
-
 
 
 });

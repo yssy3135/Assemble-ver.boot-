@@ -24,8 +24,8 @@
                 <h5 id="boarddate" th:text="${b.boarddate}"></h5>
             </div>
             <div id="c">
+                <h4 th:text="${b.boardcontents }"></h4>
                 <th:block th:if="${b.requestboolean == 1}">
-
                     <th:block th:if="${b.reqstatus == 0}">
                         <div class="btn-group" style="float: right;" th:id="${b.bno }+'a'">
                             <input type="hidden" name="req_bno" th:value="${b.bno}"/>

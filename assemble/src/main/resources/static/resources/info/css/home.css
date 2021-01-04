@@ -24,6 +24,12 @@ input:focus {
     border-bottom: 1px solid #CCCCCC;
 }
 
+#b h4{
+    margin-top:0px;
+    float:left;
+
+}
+
 #f {
     margin-top: 10px;
 }

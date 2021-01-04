@@ -21,6 +21,18 @@
     border-bottom: 1px solid #CCCCCC;
 }
 
+#c{
+    padding : 10px;
+    border-bottom: 1px solid #CCCCCC;
+    margin-bottom : 10px;
+}
+
+
+#b h4{
+    float:left
+}
+
+
 #f {
     margin-top: 10px;
 }

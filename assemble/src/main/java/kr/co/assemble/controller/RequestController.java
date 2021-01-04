@@ -74,7 +74,7 @@ public class RequestController {
       model.addAttribute("mi_assemblename", mi_assembleName);
       model.addAttribute("groupno", groupno);
 
-      return "redirect:/assemble.io/{mi_assemblename}/g/{groupno}/wall";
+      return "redirect:/assemble.io/"+mi_assembleName+"/g/"+groupno+"/wall";
    }
    
    

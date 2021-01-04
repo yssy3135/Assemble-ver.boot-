@@ -61,13 +61,14 @@ public class BoardController {
 		dto.setMemberno(memberno);
 		dto.setBoardcontents(contents);
 		dao.write(dto);
-		
+
 		String mi_assembleName = (String)session.getAttribute("mi_assemblename");
+
 		model.addAttribute("mi_assemblename", mi_assembleName);
 		model.addAttribute("contents", contents);
 		model.addAttribute("groupno", groupno);
 		
-		return "redirect:/assemble.io/{mi_assemblename}/g/{groupno}/wall";
+		return "redirect:/assemble.io/"+mi_assembleName+"/g/"+groupno+"/wall";
 	}
 	
 	
@@ -80,7 +81,7 @@ public class BoardController {
 	//그룹별 게시글 조회 
 		//그룹별 정보, 구성원 정보(Groups_Memberinfo_Composed_DTO)
 		@RequestMapping("/assemble.io/{mi_assemblename}/g/{groupno}/wall")
-		public String groupBoard(@PathVariable("groupno")int groupno, 
+		public String groupBoard(@PathVariable("groupno")int groupno,
 								@PathVariable("mi_assemblename") String assemblename, Model model){
 
 			//그룹장 이름 출력
