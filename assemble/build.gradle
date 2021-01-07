@@ -40,6 +40,8 @@ dependencies {
 	compile group: 'org.springframework.security', name: 'spring-security-core', version: '5.2.5.RELEASE'
 	compile group: 'org.springframework.security', name: 'spring-security-web', version: '5.2.5.RELEASE'
 	compile group: 'org.springframework.security', name: 'spring-security-config', version: '5.2.5.RELEASE'
+	compile group: 'org.springframework', name: 'spring-websocket', version: '5.2.6.RELEASE'
+	compile group: 'org.springframework', name: 'spring-messaging', version: '5.2.6.RELEASE'
 
 }
 

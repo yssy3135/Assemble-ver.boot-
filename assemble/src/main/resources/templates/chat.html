@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+    <meta charset="UTF-8">
+    <title>Title</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title></title>
+<head th:fragment="chat">
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="/resources/assets/css/chat_css.css">  <!-- css 파일 경로  -->
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/sockjs-client/1.4.0/sockjs.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/stomp.js/2.3.3/stomp.min.js"></script>
+    <script type="text/javascript"src="/resources/js/chat.js"></script>
+</head>
+<body>
+<th:block th:each ="i : ${list}">
+    <tr>
+        <td th:text="${i.roomname}"></td>
+        <td th:text="${i.senderno}"></td>
+        <td th:text="${i.chatcontent}"></td>
+        <td th:text="${i.chattime}"></td>
+    </tr>
+</th:block>
+
+<div class="all">
+    <div id="list_header">
+        <span id="head_font">그룹대화</span>
+        <a href="#" id="plus" class="plus">
+            <span id="plus_chat_window" class="glyphicon glyphicon-plus icon_plus" onclick="newopenForm()"></span>        <!-- puls 이모티콘 추가-->
+        </a>
+    </div>
+
+
+
+
+    <div id="list">
+        <aside>
+            <div id="grouplist">
+                <ul id="group">
+                    <th:block th:each = "i:${grouplist}">
+                        <li class = "memno" id ="groupchat">
+                            <div id ="groupchat">
+                                <h2 class="memberno" th:id="${i.togetherno}" th:text="${i.roomname}"></h2>
+                            </div>
+                        </li>
+                    </th:block>
+                </ul>
+            </div>
+
+            <ul id="alllist">
+                <br />
+                <span id="head_font">대화</span>
+                <th:block th:each="a : ${memlist}" >
+                    <th:block th:if="${mi_memid != a.mi_memid}">
+                            <li class="memno">
+                                <span class="dot" th:id ="${a.mi_memberno}+'d'" ></span>            <!-- dot = 로그인/비로그인 으로 색 구분  -->
+                                <div>
+                                    <h2 class="memname" th:id="${a.mi_memid }" th:text="${a.mi_memname}+'('+${a.mi_memid}+')'">)</h2><!-- 사용자 id와 이름 가져오기 -->
+                                    <input type="hidden"  th:value="${a.mi_memberno}" />
+                                    <input type="hidden"  th:value="${a.mi_memname}" />
+                                </div>
+                            </li>
+
+                    </th:block>
+
+                    <th:block th:if="${mi_memid == a.mi_memid}">
+                            <input type="hidden" id="myno" th:value="${a.mi_memberno}" />
+                            <input type="hidden" id="myname" th:value="${a.mi_memname}" />
+                    </th:block>
+
+
+
+                </th:block>
+
+                <!-- <li></li>이 DB에서 접속사용자 가져오게...  -->
+
+            </ul>
+
+            <footer class="footer">
+                <input type="text" id="listsearch" onkeyup="list_search()" placeholder="이름 또는 아지트 아이디 검색">
+            </footer>
+
+            <!-- 검색하기 기능  -->
+
+        </aside>
+    </div>
+
+
+</div>
+<!-- 채팅 목록 리스트 end  -->
+
+
+<!-- 채팅 화면 div -->
+<div class="show1" id="chatbox" style="z-index: 2">
+    <div class="row chat-window col-xs-5 col-md-3 pull-right" id="chat_window_1">
+        <div class="col-xs-12 col-md-12">
+
+            <div class="panel panel-default">
+
+                <div class="panel-heading top-bar">
+
+                    <div class="col-md-7 col-xs-8" id="paneltit">
+                        <span id="panel-title"><span class="dot"></span >이름</span>
+                    </div>
+
+                    <div class="col-md-5 col-xs-5" style="text-align: right;" id="iconchat">
+                        <a href="#"><span id="minim_chat_window" class="glyphicon glyphicon-arrow-down icon_arrow-down"></span></a>
+                        <a href="#"><span id="plus_chat_window" class="glyphicon glyphicon-plus icon_plus" onclick="newopenForm()"></span></a>
+                        <a href="#"><span class="glyphicon glyphicon-remove icon_close_chat" data-id="chat_window_1"  onclick="reset()"></span></a>
+                    </div>
+
+                </div>
+                <!-- 채팅화면 상단바  -->
+
+
+                <div id="messagebody" class="panel-body msg_container_base">
+
+
+
+                    <!-- 메세지 대화 send 와 receive로 폼 주고 받기~~ -->
+
+
+                </div>
+
+            </div>
+
+            <!-- 채팅화면 대화~~ end  -->
+
+            <div class="panel-footer">
+                <div class="input-group">
+                    <input id="btn-input" type="text" class="form-control input-sm chat_input" placeholder="메세지를 입력해주세요..." required="required" />
+                    <span class="input-group-btn">
+                       <button class="btn btn-primary btn-sm" id="btn-chat">보내기</button>
+                    </span>
+                </div>
+            </div>
+
+            <!-- 채팅화면 글쓰기 폼 end  -->
+
+        </div>
+    </div>
+</div>
+
+<!-- 채팅화면 div end  -->
+
+
+<!-- 새로운 채팅 div  -->
+
+<!-- 새로운 채팅 추가 div -->
+<div class="show2" id="pluschatbox" style="z-index: 2">
+    <div class="row pluschat-window col-xs-5 col-md-3 pull-right" id="pluschat_window">
+        <div class="col-xs-12 col-md-12">
+            <div class="panel panel-default">
+
+                <div class="panel-heading top-bar">
+
+                    <div class="col-md-10 col-xs-8" id="comment" >
+                        <span class="comment">새로운대화</span>
+                    </div>
+
+                    <div class="col-md-4 col-xs-5" style="text-align: right;" id="iconclose">
+                        <a href="#"><span class="glyphicon glyphicon-remove icon_close_new" data-id="pluschat_window"></span></a>
+                    </div>
+
+                </div> <!-- 새로운대화 상단바  -->
+
+
+                <div id="myDropdown" class="dropdown-content" onclick = "filterFunction()">
+                    <input type="text" placeholder="이름 또는 아지트 아이디를 입력하세요" id="myInput" >
+
+                    <th:block th:each="a:${memlist}">
+                        <th:block  th:if="${mi_memid != a.mi_memid}">
+                            <div  th:id = "${a.mi_memberno}" class = "memberblock">
+                                <a href="#" th:onclick="|javascript:startchat('${a.mi_memname}','${a.mi_memid}','${a.mi_memberno}')|">
+                                <span th:text="${a.mi_memname}+'('+${a.mi_memid}+')'"></span>
+                                </a>
+                            </div>
+                        </th:block>
+
+                    </th:block>
+
+
+                    <!-- div가 리스트로 출력되어야 함! == db에서 사용자 리스트 가져오기  -->
+
+
+                </div>
+
+                <button class="new-chat" id="new-chat">대화시작하기</button>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<!-- 새로운 채팅 추가 end  -->
+
+<!-- js -->
+
+</body>
+</html>
