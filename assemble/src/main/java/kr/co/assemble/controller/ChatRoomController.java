@@ -92,15 +92,13 @@ public class ChatRoomController {
 		session.getAttribute("mi_assemblename");
 		// withh가 어셈블 이름
 		List<MemberDTO> memlist = dao.getid((String) session.getAttribute("mi_assemblename"));
-		
-		
-		
+
 		model.addAttribute("memlist", memlist);
 		
 		 System.out.println(session.getAttribute("id"));
 		/* int memberno = (int) session.getAttribute("bno"); */
-		 
-		 
+
+
 		// int memberno = 1; // 세션 멤버넘버
 		 List<GroupChatDTO> grouplist=dao.selectgroupchat((int) session.getAttribute("memberno"));
 		 
@@ -116,6 +114,35 @@ public class ChatRoomController {
 		 
 		return path;
 	}
+
+
+	@RequestMapping("/getmemlist")
+	@ResponseBody
+	public List<MemberDTO> getmemlist(Model model, HttpServletRequest req) {
+
+		HttpSession session = req.getSession();
+
+		session.getAttribute("mi_memid");
+
+		session.getAttribute("memberno");
+		session.getAttribute("mi_assemblename");
+		// withh가 어셈블 이름
+		List<MemberDTO> memlist = dao.getid((String) session.getAttribute("mi_assemblename"));
+
+		model.addAttribute("memlist", memlist);
+
+		System.out.println(session.getAttribute("id"));
+		/* int memberno = (int) session.getAttribute("bno"); */
+
+
+		//session.setAttribute("id", "yssy3135");
+
+
+		// System.out.println(memlist.get(0).getmI_memName());
+
+		return memlist;
+	}
+
 
 //	public ChatRoom createRoom(@RequestParam String name) {
 //		return chatRoomRepository.createChatRoom(name);

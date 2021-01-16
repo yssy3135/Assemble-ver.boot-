@@ -70,7 +70,7 @@ public class NavbarController {
 		path = path.replaceAll("`","/");
 		model.addAttribute("path",path);
 
-		return "forward:/chatroom/room/side";
+		return path;
 
 	}
 	
