@@ -54,32 +54,9 @@
                 <input type="hidden" id="mi_memid" th:value="${session.mi_memid}">
                 <br />
                 <span id="head_font">대화</span>
-                    <th:block th:each="a : ${memlist}" >
-                            <th:block th:if="${mi_memid != a.mi_memid}">
-                                    <li class="memno">
-                                        <span class="dot" th:id ="${a.mi_memberno}+'d'" ></span>            <!-- dot = 로그인/비로그인 으로 색 구분  -->
-                                        <div>
-                                            <h2 class="memname" th:id="${a.mi_memid }" th:text="${a.mi_memname}+'('+${a.mi_memid}+')'"></h2><!-- 사용자 id와 이름 가져오기 -->
-                                            <h2 class="memname" th:id="" th:text=""></h2>
-                                            <input type="hidden"  th:value="${a.mi_memberno}" />
-                                            <input type="hidden"  th:value="${a.mi_memname}" />
-                                        </div>
-                                    </li>
 
-                            </th:block>
-
-                        <th:block th:if="${mi_memid == a.mi_memid}">
-                                <input type="hidden" id="myno" th:value="${a.mi_memberno}" />
-                                <input type="hidden" id="myname" th:value="${a.mi_memname}" />
-                        </th:block>
-
-
-
-
-                </div>
-
-                <!-- <li></li>이 DB에서 접속사용자 가져오게...  -->
-
+                <input type="hidden" id="myno" th:value="2" />
+                <input type="hidden" id="myname" value="테스트용이름" />
             </ul>
 
             <footer class="footer">
