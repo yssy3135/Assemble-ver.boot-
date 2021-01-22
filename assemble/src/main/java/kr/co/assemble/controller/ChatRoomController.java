@@ -185,8 +185,8 @@ public class ChatRoomController {
 		return list;
 		
 	}
-	
-	
+
+	@ResponseBody
 	@RequestMapping(value = "/room/inputchat")
 	public void inputchat(HttpServletRequest req,Chatgogo chatgogo) {
 		

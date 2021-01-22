@@ -217,6 +217,101 @@ $(function(){
 
     });
 
+    /*전송 버튼 클릭시*/
+    $( "#btn-chat" ).click(function() {
+        send()
+    });
+
+
+
+    // 보내기 function start
+    function send(){
+
+        //document.getElementById("myname").value
+        var name =  $("#name").val();
+        var contents =  $("#btn-input").val();
+
+
+        //방 이름 설정
+        var room;
+        var me = document.getElementById("myno").value;
+        /*        var receiverno = this.childNodes[5].childNodes[5].value;
+
+              if(me>receiverno){
+                 room = receiverno+me
+              }else{
+                 room = me+receiverno
+              } */
+
+
+        var message = {
+            'name': nameid,
+            'contents' : contents,
+            'roomid' : rooom,
+            'sender' : document.getElementById("myno").value
+        };
+
+        console.log(JSON.stringify(message));
+
+        stompClient.send("/app/welcome/"+rooom, {}, JSON.stringify(message));
+        stompClient2.send("/app/status/"+receiverno, {}, JSON.stringify(message));
+
+
+        //여기서'name'이라는 변수에 name을 받아서 전송
+
+        //세션을 엮어서 아이디로 출력
+        /* {'contents': $("#contents").val() } */
+
+        var chat = $("#btn-input").val();
+        var dt = new Date();
+        var time = dt.getHours() + ":" + dt.getMinutes() + ":" + dt.getSeconds();
+
+        if (chat =="") {
+            alert('메시지를 입력하세요');
+        } else {
+            var body = '<div class="row msg_container base_sent">' +
+                '<div class="col-md-10 col-xs-10 " id="sent">' +
+                '<div class="messages msg_sent" id="msgsent">' +
+                '<p>' + chat + '</p>' +
+                ' <time datetime="2009-11-13T20:00">' + sendernameid + '•' + time + '</time>' +
+                '</div>' +
+                '</div>' +
+                '</div>';
+
+
+            $(body).appendTo("#messagebody");
+
+            $('#btn-input').val('');
+
+            $("#messagebody").animate({scrollTop: $("#messagebody")[0].scrollHeight}, 'slow');
+
+            // db에 채팅내용 저장
+            $.ajax({
+                url: "/chatroom/room/inputchat/",
+                type: "POST",
+                data: {
+                    "roomid": rooom,
+                    "assemblename": "${mi_assembleName}",  //세션에서 어셈블이름 불러와야함
+                    "chatcontents": contents,
+                    "senderno": myno
+                }
+            });
+        }
+
+    }
+
+    /*채팅 엑스버튼 클릭*/
+    $('.icon_close_chat').click(function() {
+        document.getElementById("panel-title").innerText = "";
+    });
+    
+    /*채팅 플러스 버튼클릭*/
+    $('.icon_plus').click(function(){
+        document.getElementById("pluschatbox").style.display = "block";
+
+        map.clear();
+        console.log(1);
+    })
 
 
 
