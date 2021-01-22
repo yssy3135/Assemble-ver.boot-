@@ -301,8 +301,9 @@ $(function(){
     }
 
     /*채팅 엑스버튼 클릭*/
-    $('.icon_close_chat').click(function() {
-        document.getElementById("panel-title").innerText = "";
+    $(document).on('click', '.icon_close_chat', function (e) {
+        //$(this).parent().parent().parent().parent().remove();
+        $( "#chatbox" ).hide();
     });
     
     /*채팅 플러스 버튼클릭*/
@@ -312,6 +313,71 @@ $(function(){
         map.clear();
         console.log(1);
     })
+
+
+    /*추가채팅 엑스버튼*/
+    $(document).on('click', '.icon_close_new', function (e) {
+        //$(this).parent().parent().parent().parent().remove();
+        $( "#pluschatbox" ).hide();
+    });
+
+    /*채팅 내리기*/
+    $(document).on('click', '.panel-heading span.icon_arrow-down', function (e) {
+        var $this = $(this);
+
+        if (!$this.hasClass('panel-collapsed')) {
+            $this.parents('.panel').find('.panel-body').slideUp();
+            $this.addClass('panel-collapsed');
+            $this.removeClass('glyphicon-arrow-down').addClass('glyphicon-arrow-up');
+        } else {
+            $this.parents('.panel').find('.panel-body').slideDown();
+            $this.removeClass('panel-collapsed');
+            $this.removeClass('glyphicon-arrow-up').addClass('glyphicon-arrow-down');
+        }
+    });
+
+
+    /*채팅 추가 리스트트*/
+   $('.dropdown-content').click(function () {
+        var input, filter, ul, li, a, i;
+
+        input = document.getElementById("myInput");
+
+        filter = input.value.toUpperCase();
+
+        div = document.getElementById("myDropdown");
+        a = div.getElementsByTagName("a");
+
+        for (i=0; i<a.length; i++) {
+            txtValue = a[i].textContent || a[i].innerText;
+            if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                a[i].style.display = "block";                        /* 검색을 하면 리스트 보이게  */
+            } else {
+                a[i].style.display = "none";
+            }
+        }
+    });
+
+
+    $('#listsearch').keyup(function(){
+
+        var input, filter, ul, li, a, i, txtValue;
+        input = document.getElementById("listsearch");
+        filter = input.value.toUpperCase();
+        ul = document.getElementById("alllist");
+        li = ul.getElementsByTagName("li");
+
+        for (i = 0; i < li.length; i++) {
+            a = li[i].getElementsByTagName("a")[0];
+            txtValue = a.textContent || a.innerText;
+            if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                li[i].style.display = "";
+            } else {
+                li[i].style.display = "none";
+            }
+        }
+    });
+
 
 
 
