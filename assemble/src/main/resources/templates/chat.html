@@ -29,7 +29,7 @@
     <div id="list_header">
         <span id="head_font">그룹대화</span>
         <a href="#" id="plus" class="plus">
-            <span id="plus_chat_window" class="glyphicon glyphicon-plus icon_plus" onclick="newopenForm()"></span>        <!-- puls 이모티콘 추가-->
+            <span id="plus_chat_window" class="glyphicon glyphicon-plus icon_plus" ></span>        <!-- puls 이모티콘 추가-->
         </a>
     </div>
 
@@ -148,10 +148,10 @@
                 </div> <!-- 새로운대화 상단바  -->
 
 
-                <div id="myDropdown" class="dropdown-content" onclick = "filterFunction()">
+                <div id="myDropdown" class="dropdown-content" >
                     <input type="text" placeholder="이름 또는 아지트 아이디를 입력하세요" id="myInput" >
 
-                    <th:block th:each="a:${memlist}">
+<!--                    <th:block th:each="a:${memlist}">
                         <th:block  th:if="${mi_memid != a.mi_memid}">
                             <div  th:id = "${a.mi_memberno}" class = "memberblock">
                                 <a href="#" th:onclick="|javascript:startchat('${a.mi_memname}','${a.mi_memid}','${a.mi_memberno}')|">
@@ -160,12 +160,8 @@
                             </div>
                         </th:block>
 
-                    </th:block>
-
-
+                    </th:block>-->
                     <!-- div가 리스트로 출력되어야 함! == db에서 사용자 리스트 가져오기  -->
-
-
                 </div>
 
                 <button class="new-chat" id="new-chat">대화시작하기</button>

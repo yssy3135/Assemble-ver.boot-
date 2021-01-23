@@ -14,7 +14,9 @@ $(function(){
     });
 
 
-
+    function clicktest(){
+        console.log("온클릭 테스트")
+    }
 
 
     // 회원 목록 리스트 반환
@@ -35,11 +37,28 @@ $(function(){
                           '<input type="hidden"  value='+data[i].mi_memname+' />\n' +
                           '</div>\n' +
                           '</li>')
+
+
+                      /*그룹채팅 멤버 추가*/
+                      $('.dropdown-content').append('<div class= "memberblock" id = '+data[i].mi_memberno+'>\n'+
+                          '                                <a href="#" ">\n' +
+                          '                                <span>'+data[i].mi_memname+'('+data[i].mi_memid+')</span>' +
+                          '                                <input type="hidden" id = "memno"  value='+data[i].mi_memberno+' />\n' +
+                          '                                <input type="hidden" id = "memname" value='+data[i].mi_memname+' />\n' +
+                          '                                <input type="hidden" id = "memid" value='+data[i].mi_memid+' />\n' +
+                          '                                </a>' +
+                          '                            </div>')
+
+
                   }else{
                       $('#alllist').append('<input type="hidden" id="myno" value='+data[i].mi_memberno+' />\n' +
                           '                 <input type="hidden" id="myname" value='+data[i].mi_memname+' />')
                   }
                 }
+
+
+
+
 
             },
             error: function(){
@@ -377,6 +396,50 @@ $(function(){
             }
         }
     });
+
+
+    const map =new Map();
+    /* 그룹 채팅 선택 */
+    function newstartchat(name,id,plusmemberno) {
+
+        pulsmember = name+"("+id+")";
+        console.log("넘어온 데이터", pulsmember+plusmemberno);
+
+        if(map.has(plusmemberno)){
+
+            map.delete(plusmemberno);
+            var block = document.getElementById(plusmemberno);
+            block.style.backgroundColor = "#f6f6f6";
+        }else{
+            map.set(plusmemberno,pulsmember);
+
+            var block = document.getElementById(plusmemberno);
+            block.style.backgroundColor = "#00bcd4";
+
+        }
+        console.dir(map);
+
+
+
+        var clickmem = document.getElementById("new-chat");
+
+        clickmem.style.color = "#497BD9";                  //검색해서 나온 이용자를 클릭 하면 버튼 활성화!
+        /* color: #497BD9; 버튼이 파란색으로 바뀐다..... */
+
+    };
+
+
+
+    $(document).on('click','.memberblock a',function(){
+        let memno = this.children[1].value;
+        let memname = this.children[2].value;
+        let memid = this.children[3].value;
+
+        newstartchat(memname,memid,memno);
+
+
+    })
+
 
 
 
