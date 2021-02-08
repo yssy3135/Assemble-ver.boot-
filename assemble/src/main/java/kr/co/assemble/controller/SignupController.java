@@ -3,6 +3,7 @@ package kr.co.assemble.controller;
 import java.io.File;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
@@ -193,11 +194,28 @@ public class SignupController {
 	// 멤버 초대
 	@RequestMapping(value="/invitedemail")
 	public String invitedemail() {
-		
-		
 		return "mem_email";
 	}
-	
+
+	//초대 수락
+	@RequestMapping(value="/invitedAccept")
+	@ResponseBody
+	public ArrayList<String> invitedAccept(HttpServletRequest req){
+		String mi_assemblename = (String)req.getAttribute("mi_assemblename");
+		String ran = (String)req.getAttribute("ran");
+		String mi_mememail = (String)req.getAttribute("mi_mememail");
+
+		ArrayList<String> list = new ArrayList<String>();
+		list.add(mi_assemblename);
+		list.add(ran);
+		list.add(mi_mememail);
+
+
+		return list;
+	}
+
+
+
 	// 이메일로 어셈블 찾기 후 이메일 발송 폼, 즉 이메일로 온 jsp
 	@RequestMapping(value="/findemail")
 	public String findemail(HttpSession session, Model model) {

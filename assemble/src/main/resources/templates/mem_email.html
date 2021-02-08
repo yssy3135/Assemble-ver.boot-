@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>mem_email</title>
+    <link type="text/css" rel="stylesheet" href="/resources/info/css/mem_email.css" />
+    <link type="text/css" rel="stylesheet" href="/resources/info/css/bootstrap.min.css" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script type="text/javascript" src ="/resources/js/mem_email.js"></script>
+
+    <head>
+        <meta charset="UTF-8">
+        <title>mem_email</title>
+    </head>
+<body>
+<div class="container">
+    <div class="row">
+        <div class="col-sm-10 col-md-8 col-lg-6 mx-auto">
+            <div class="card card-signin my-5">
+                <div class="card-body">
+                    <div class="form">
+
+
+                        <div class="form-group">
+                            <img src="/resources/info/images/assemble.png" alt="assemble" />
+                        </div>
+
+                        <div class="form-group">
+                            <h2 class="card-title"></h2>
+                            <h3> <a th:text="${param.mi_assemblename}"></a> 어셈블에 초대되셨습니다.</h3>
+                            <p>이 초대를 수락하시려면 아래의 링크를 클릭해 어셈블 계정을 만들어주세요.</p>
+                        </div>
+
+                        <div class="form-group">
+                            <div class="nexturl"></div>
+<!--                            <a th:href="'/assemble.io/'+${param.mi_assemblename}+'/login/'+${param.ran}+'a?mi_assemblename='+${param.mi_assemblename}+'&mi_mememail='+${param.mi_mememail}+'$ran='+${param.ran}" th:text="'http://localhost:8090/assemble.io/'+${param.mi_assemblename}+'/login/'+${param.ran}+'/a'"></a>-->
+                        </div>
+
+                        <hr />
+                        <div class="form-group">
+                            <p>본 메일은 발신 전용이며, 문의에 대한 회신은 처리되지 않습니다.</p>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

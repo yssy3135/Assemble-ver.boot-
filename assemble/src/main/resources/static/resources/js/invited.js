@@ -35,11 +35,11 @@ $(function(){
                 loadingBarStart();
             }, */
             type:"post",
-            url : "<c:url value='/invitedOk'/>",
+            url : "/invitedOk",
             data : "invited=" + $("#memEmail").val() + "&ran=" + $("#ran").val(),
 
             success : function(data){
-
+                console.log(data);
                 alert("초대 완료!");
                 document.frm.action="/assemble.io/<c:out value='${mi_assemblename}' />/home?memberno=<c:out value='${memberno}' />";
                 document.frm.submit();

@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>mem_signup</title>
+
+    <link type="text/css" rel="stylesheet" href="/resources/info/css/mem_signup.css" />
+    <script type="text/javascript" src="/resources/info/js/bootstrap.bundle.min.js"></script>
+    <!-- <script type="text/javascript" src="/resources/info/js/jquery.slim.min.js"></script> -->
+    <link type="text/css" rel="stylesheet" href="/resources/info/css/bootstrap.min.css" />
+    <!-- <script type="text/javascript" src="/resources/info/js/jquery-3.4.1.min.js"></script>  -->
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script type="text/javascript" src="/resources/js/mem_signup.js"></script>
+
+</head>
+<body>
+<div class="container">
+    <div class="row">
+        <div class="col-sm-10 col-md-8 col-lg-6 mx-auto">
+            <div class="card card-signin my-5">
+                <div class="card-body">
+                    <div class="memProfileImg">
+                        <img src="/resources/info/images/letter.png" alt="letter" id="letter"/>
+                    </div>
+                    <h5 class="card-title text-center" th:text="${param.mi_assemblename}"></h5>
+
+
+                    <form class="form-signin" method="POST" name="frm">
+                        <input type="hidden" name="mi_assemblename" th:value="${param.mi_assemblename}" />
+                        <input type="hidden" name="mi_mememail" th:value="${param.mi_mememail}" />
+
+                        <div class="form-label-group">
+                            <div class="form-name">
+                                <p>초대받은 이메일</p>
+                            </div>
+                            <input type="email" id="inputEmail" name="mi_mememail" class="form-control"
+                                   th:value="'http://15.165.95.43:8080/assemble.io/'+${param.mi_assemblename}+'/login/'+${param.ran}+'/a'" readonly/>
+                        </div>
+
+                        <div class="form-label-group">
+                            <div class="form-name">
+                                <p>아이디 만들기</p>
+                            </div>
+                            <input type="text" id="inputId" name="mi_memid" class="form-control" placeholder="Id" required/>
+                            <span id="duplication">
+
+			             </span>
+                            <input type="password" id="inputPassword" name="mi_mempw" class="form-control" placeholder="Password" required>
+                            <input type="password" id="confirmPassword" class="form-control" placeholder="confirm Password" required>
+                            <input type="text" id="inputName" name="mi_memname" class="form-control" placeholder="Name" required>
+                        </div>
+
+                        <hr class="my-4">
+                        <div class="custom-control custom-checkbox mb-3">
+
+                            <input type="checkbox" class="custom-control-input" id="customCheck1" required>
+                            <label class="custom-control-label" for="customCheck1">
+                                <!-- terms.jsp 새창띄우기============================ -->
+                                <a href="/terms" target="_blank" onClick="window.open(this.href, '', 'width=550, height=450, left=300,top=300'); return false;">약관동의(필수)</a></label>
+                        </div>
+                        <button class="btn btn-lg btn-info btn-block text-uppercase" type="button">가입하기</button>
+
+                    </form>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+</div>
+
+</body>
+</html>

@@ -172,7 +172,7 @@ public class AI_controller {
 				"<h1> 어셈블에 초대되셨습니다. </h1>" +
 				"<h3>[Assemble]"+ memid +"님이 "+ mi_assembleName +" 어셈블에 초대하셨습니다.</h>\r\n" +
 				"	<h3>초대 링크를 보시려면 "+
-				"<a href=\"http://13.209.244.152:8080/invitedemail?mi_assemblename="+mi_assembleName+"&ran="+encodeRan+"&mi_mememail="+invited+"\">"  +
+				"<a href=\"http://localhost:8090/invitedemail?mi_assemblename="+mi_assembleName+"&ran="+encodeRan+"&mi_mememail="+invited+"\">"  +
 				"여기</a>를 눌러주세요!</h3>\r\n" +
 				"	<hr />\r\n" +
 				"	<div class=\"form-group\">\r\n" +
