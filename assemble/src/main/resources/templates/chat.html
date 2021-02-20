@@ -55,8 +55,8 @@
                 <br />
                 <span id="head_font">대화</span>
 
-                <input type="hidden" id="myno" th:value="2" />
-                <input type="hidden" id="myname" value="테스트용이름" />
+                <input type="hidden" id="myno" th:value="${param.memberno}" />
+                <input type="hidden" id="myname" th:value="${session.mi_memname}" />
             </ul>
 
             <footer class="footer">

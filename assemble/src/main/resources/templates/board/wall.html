@@ -39,8 +39,8 @@
                     </div>
                     <div id="a">
                         <!-- 프사 추가 하려면 Groupboard_MemberinfoDTO에 프사 추가, MAPPER에 추가하기 -->
-                        <h4 th:text="${b.mi_memname }+'('+${b.mi_memid }+')'"></h4>
-                        <h5 id="boarddate" th:text="${b.boarddate }"></h5>
+                  <!--      <h4 th:text="${b.mi_memname }+'('+${b.mi_memid }+')'"></h4>
+                        <h5 id="boarddate" th:text="${b.boarddate }"></h5>-->
                     </div>
 
                     <!-- <div id="b"> -->
@@ -84,11 +84,11 @@
                                     <input type="button" value="종료" id="btnec" class="end"/>
                                 </div>
                             </th:block>
-                          <!--  <%&#45;&#45; <h5>요청진행상태 : ${b.reqstatus }</h5> &#45;&#45;%>-->
+                          <!--  <%-- <h5>요청진행상태 : ${b.reqstatus }</h5> --%>-->
                         </th:block>
 
                         <th:block th:if="${b.filename != null }">
-                          <!--  <%&#45;&#45; <a href="download?filename="+${b.filename }><h5>파일명 : ${b.filename }</h5></a> &#45;&#45;%>-->
+                          <!--  <%-- <a href="download?filename="+${b.filename }><h5>파일명 : ${b.filename }</h5></a> --%>-->
                             <h5>파일명 : <input type="button" th:value="${b.filename }" class="file"/></h5>
                         </th:block>
 
@@ -138,7 +138,6 @@
                     <div id="d">
                         <input type="hidden" name="bno" th:value="${b.bno }"/>
                         <input type="hidden" name="groupno" th:value="${b.groupno }"/>
-                     <!--   <%&#45;&#45; <input type="hidden" name="categoryno" value="${b.categoryno }"/> &#45;&#45;%>-->
                         <input type="text" name="" th:id="retext" placeholder=" 댓글을 입력하세요" />
                         <input type="button" value="등록" class="submit"/>
                     </div>

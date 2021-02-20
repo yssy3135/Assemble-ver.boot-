@@ -49,11 +49,11 @@
     });
 
 
-});
+
 
 
     //댓글달기
-    $(function(){
+
     $(".submit").click(function(){
 
         // console.log(this.parentNode.childNodes);
@@ -67,11 +67,10 @@
     });
 
     //게시글 option메뉴
-});
+
 
     //댓글 보이기
     /* $(document).ready(function(){ */
-    $(function(){
     $(".re").click(function(){
 
 
@@ -118,11 +117,10 @@
 
 });
 });
-}); //function end
 
 
 
-    $(function(){
+
     $(".sub2").hide(); //처음에는 안보이게
 
     $(".option2").click(function(){
@@ -185,13 +183,12 @@
 });//.modi click end
 
 
-}); //function end
+
 
 
 
 
     //요청 상태 변화
-    $(function() {
     var r1 = $('.req');
     var r2 = $('.ing');
     var r3 = $('.end');
@@ -283,9 +280,7 @@
 });//ajax end
 
 });//.end click end
-});//function end
 
-    $(function(){
     $(".file").click(function(){
 
     var filename = $(this).val();
@@ -293,5 +288,112 @@
 
     document.location.href = "/download?filename="+filename;
 });
+
+/* *****************************REST 부분*******************************/
+
+        $.ajax({
+            url : "/A/group/5/board",
+            type : 'GET',
+            dataType: "json",
+            success: function(data){
+
+                console.dir(data);
+
+
+                for(let i = 0 ; i < data.length;i++){
+                    console.log(data[i]);
+                    console.log(data[i].stringify)
+                }
+
+
+
+                for(let i = 0 ; i<data.length; i++){
+                    if(data[i].boardnotice == 1){
+                        $("#z").append(
+                            '<img src="/resources/assets/img/star.png" alt="공지글"  id="notice"/>' +
+                            '<b> 공지글</b>'
+                        )
+                    }
+
+                    $("#a").append(
+                        '<h4>'+data[i].mi_memname+'('+data[i].mimemid+')</h4>\n' +
+                        '<h5 id="boarddate">'+data[i].boarddate+'</h5>'
+                    )
+
+                    if(data[i].requestboolean == 1){
+                        $("#b").append(
+                            '<h4><b>담당자 : '+data[i].responseid+'</b></h4>')
+                    }
+
+                    $("#b").append('<h4>'+data[i].boardcontents+'</h4>');
+
+                    if(data[i].requestboolean == 1){
+                        if(data[i].reqstatus == 0 ){
+                            $("#b").append(
+                                '                                <div class="btn-group" style="float: right;"  id="'+data[i].bno+'" />\n' +
+                                '                                    <input type="hidden" name="req_bno" value="'+data[i].bno+'"/>\n' +
+                                '                                    <input type="hidden" name="req_groupno" value="'+data[i].groupno+'"/>\n' +
+                                '                                    <input type="hidden" name="req_reqstatus" value="'+data[i].reqstatus+'"/>\n' +
+                                '\n' +
+                                '                                    <input type="button" value="요청" id="btnra" class="req"/>\n' +
+                                '                                    <input type="button" value="진행" id="btnia" class="ing"/>\n' +
+                                '                                    <input type="button" value="종료" id="btnea" class="end"/>\n' +
+                                '                                </div>')
+                        }
+                        if(data[i].reqstatus == 1){
+                            $("#b").append(
+                                '                                <div class="btn-group" style="float: right;"  id="'+data[i].bno+'a" />\n' +
+                                '                                    <input type="hidden" name="req_bno" value="'+data[i].bno+'"/>\n' +
+                                '                                    <input type="hidden" name="req_groupno" value="'+data[i].groupno+'"/>\n' +
+                                '                                    <input type="hidden" name="req_reqstatus" value="'+data[i].reqstatus+'"/>\n' +
+                                '\n' +
+                                '                                    <input type="button" value="요청" id="btnra" class="req"/>\n' +
+                                '                                    <input type="button" value="진행" id="btnia" class="ing"/>\n' +
+                                '                                    <input type="button" value="종료" id="btnea" class="end"/>\n' +
+                                '                                </div>')
+
+
+                        }
+                        if(data[i].reqstatus == 2){
+                            $("#b").append(
+                                '                                <div class="btn-group" style="float: right;"  id="'+data[i].bno+'a" />\n' +
+                                '                                    <input type="hidden" name="req_bno" value="'+data[i].bno+'"/>\n' +
+                                '                                    <input type="hidden" name="req_groupno" value="'+data[i].groupno+'"/>\n' +
+                                '                                    <input type="hidden" name="req_reqstatus" value="'+data[i].reqstatus+'"/>\n' +
+                                '\n' +
+                                '                                    <input type="button" value="요청" id="btnra" class="req"/>\n' +
+                                '                                    <input type="button" value="진행" id="btnia" class="ing"/>\n' +
+                                '                                    <input type="button" value="종료" id="btnea" class="end"/>\n' +
+                                '                                </div>')
+
+
+                        }
+                    } //b end
+
+
+                    if(data[i].filename != null){
+                        $("#b").append('<h5>파일명 : <input type="button" value="'+data[i].filename+'" class="file"/></h5>')
+                    }
+
+
+
+
+                }
+
+
+
+
+            },
+            error: function(req){
+                console.log("error view");
+                console.log(req);
+            }
+        });//ajax end
+
+
+
+
+
+
 });
 

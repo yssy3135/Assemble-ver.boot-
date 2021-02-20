@@ -30,7 +30,7 @@ public class MessageHandler {
 
     /* @SendTo("/queue/{roomid}") */
     @MessageMapping("/status/{memberno}")
-    @SendTo("/queue/{memberno}")
+    @SendTo("/topic/{memberno}")
     public Chatting welcome(Chatting message,@DestinationVariable String memberno) throws Exception{
 
         System.out.println(message.getRoomid());
@@ -49,7 +49,7 @@ public class MessageHandler {
 
 
     @MessageMapping("/welcome/{roomid}")
-    @SendTo("/queue/{roomid}")
+    @SendTo("/topic/{roomid}")
     public Chatting tmp(Chatting message,@DestinationVariable String roomid) throws Exception{
 
         System.out.println(message.getId());

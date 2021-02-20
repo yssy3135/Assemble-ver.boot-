@@ -91,7 +91,9 @@ public class BoardController {
 			//그룹장 아이디 출력
 			String list1 = cdao.selectGroupMasterId(groupno);
 			model.addAttribute("masterid", list1);
-			
+
+
+
 			//그룹명 출력
 			String groupname = cdao.selectGroupName(groupno);
 			model.addAttribute("groupname", groupname);
@@ -101,8 +103,7 @@ public class BoardController {
 			model.addAttribute("thirdlist", list3);
 			
 			model.addAttribute("groupno", groupno);
-			
-			///////////////////////////////////////////////////
+
 			//그룹의 멤버만 출력
 			ComposedMemberInfoDTO dto = new ComposedMemberInfoDTO();
 			dto.setGroupno(groupno);
@@ -142,8 +143,7 @@ public class BoardController {
 	
 	//게시글 수정을 위한 bno로 해당 게시글 정보 조회
 		@RequestMapping(value = "/selectBoard")
-		public String selectbno(
-				@RequestParam(value = "bno") int bno, Model model) {
+		public String selectbno(@RequestParam(value = "bno") int bno, Model model) {
 			//System.out.println(bno);
 			
 			List<BoardDTO> list = dao.selectOne(bno);
@@ -227,7 +227,7 @@ public class BoardController {
 	
 	
 	
-	
+
 	
 	
 	

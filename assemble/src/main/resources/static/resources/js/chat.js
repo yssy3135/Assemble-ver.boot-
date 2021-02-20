@@ -28,7 +28,7 @@ $(function(){
             dateType :"list",
             success: function(data){
                 for(let i = 0 ; i < data.length;i++){
-                  if(data[i].mi_memid == mi_memid){
+                  if(data[i].mi_memid != mi_memid){
                       $('#alllist').append('<li class="memno">\n' +
                           '<span class="dot" id ='+data[i].mi_memberno+'d></span> \n' +
                           '<div>\n' +
@@ -81,7 +81,7 @@ $(function(){
 
             console.log('Connected: ' + frame);
             // 주소 구독
-            stompClient.subscribe('/queue/'+myno, function (chatting) {
+            stompClient.subscribe('/topic/'+myno, function (chatting) {
                 if(JSON.parse(chatting.body).sender != myno){
 /*                    console.log("방이름 옐로우"+JSON.parse(greeting.body).sender);
                     console.log( document.getElementById(JSON.parse(greeting.body).sender+"d").parentNode.childNodes[5].innerText);
@@ -89,7 +89,7 @@ $(function(){
                     console.log( document.getElementById(JSON.parse(greeting.body).sender+"d").parentNode.childNodes[5].innerText);*/
 
                     var panel =   document.getElementById("panel-title");
-                    if(panel.innerText !=  document.getElementById(JSON.parse(chatting.body).sender+"d").parentNode.childNodes[5].innerText){
+                    if(panel.innerText ==  document.getElementById(JSON.parse(chatting.body).sender+"d").parentNode.children[1].children[2].value){
                         document.getElementById(JSON.parse(chatting.body).sender+"d").style.backgroundColor ="blue";
                     }
                 }
@@ -171,10 +171,9 @@ $(function(){
         function connect2() {
             var socket2 = new SockJS('/websocket');
             stompClient2= Stomp.over(socket2);
-
             stompClient2.connect({}, function (frame) {
                 console.log("커넥트 2")
-                stompClient2.subscribe('/queue/'+room, function (greeting) {
+                stompClient2.subscribe('/topic/'+room, function (greeting) {
 
                     console.log("불거오기 완료")
 
@@ -184,7 +183,7 @@ $(function(){
                             '<div class="col-xs-10 col-md-10">'+
                             '<div class="messages msg_receive">'+
                             '<p> '+JSON.parse(greeting.body).content+'</p>'+
-                            '<time datetime="2009-11-13T20:00">'+JSON.parse(greeting.body).id+JSON.parse(greeting.body).sendTime+'</time>'+
+                            '<time datetime="2009-11-13T20:00">'+JSON.parse(greeting.body).id+" "+JSON.parse(greeting.body).sendTime+'</time>'+
                             '</div>'+
                             '</div>'+
                             '</div>'
@@ -248,7 +247,7 @@ $(function(){
 
         //document.getElementById("myname").value
         var name =  $("#name").val();
-        var contents =  $("#btn-input").val();
+        let contents =  $("#btn-input").val();
 
 
         //방 이름 설정
@@ -264,16 +263,16 @@ $(function(){
 
 
         var message = {
-            'name': nameid,
-            'contents' : contents,
+            'id': nameid,
+            'content' : contents,
             'roomid' : rooom,
             'sender' : document.getElementById("myno").value
         };
 
         console.log(JSON.stringify(message));
 
-        stompClient.send("/app/welcome/"+rooom, {}, JSON.stringify(message));
-        stompClient2.send("/app/status/"+receiverno, {}, JSON.stringify(message));
+        stompClient.send("/welcome/"+rooom, {}, JSON.stringify(message));
+        stompClient2.send("/status/"+receiverno, {}, JSON.stringify(message));
 
 
         //여기서'name'이라는 변수에 name을 받아서 전송
