@@ -5,9 +5,8 @@
 프로젝트 어셈블 스프링부트 버전
 <h1># Assemble-ver.boot-</h1>
 <h1>프로젝트 어셈블 스프링부트 버전</h1>
-https://user-images.githubusercontent.com/62733005/111072581-8f9ee380-851e-11eb-9212-895cfc522226.png
-https://user-images.githubusercontent.com/62733005/111072586-9168a700-851e-11eb-814d-f776ff1093f4.png
-
+<img src ="https://user-images.githubusercontent.com/62733005/111072581-8f9ee380-851e-11eb-9212-895cfc522226.png">
+<img src ="https://user-images.githubusercontent.com/62733005/111072586-9168a700-851e-11eb-814d-f776ff1093f4.png">
 <h2>개요</h2>
 <p>회사 내에서 사용하는 업무 협업 웹</p>
 <h2>담당 업무</h2>
@@ -27,8 +26,7 @@ https://user-images.githubusercontent.com/62733005/111072586-9168a700-851e-11eb-
 
 
 <h2>DB 설계도</h2>
-https://user-images.githubusercontent.com/62733005/111072556-76963280-851e-11eb-9bfd-4b96877d0711.png
-
+<img src ="https://user-images.githubusercontent.com/62733005/111072556-76963280-851e-11eb-9bfd-4b96877d0711.png">
 
 <h2> 기능 </h2>
 <h3>채팅</h3>
