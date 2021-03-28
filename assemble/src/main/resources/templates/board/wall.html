@@ -6,6 +6,7 @@
     <title>wall.jsp</title>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script type="text/javascript" src ="/resources/js/wall.js"></script>
+    <script type="text/javascript" src ="/resources/js/home.js"></script>
     <link type="text/css" rel="stylesheet" href="/resources/info/css/wall.css" />
     <style type="text/css"></style>
 </head>
@@ -29,7 +30,7 @@
         </div>
 
         <div id="boarddis" style="display: block;">
-            <th:block th:each = "b:${thirdlist}">
+          <!--  <th:block th:each = "b:${thirdlist}">
                 <div id="board">
                     <div id="z">
                         <th:block th:if = "${b.boardnotice == 1}">
@@ -37,13 +38,8 @@
                             <b> 공지글</b>
                         </th:block>
                     </div>
-                    <div id="a">
-                        <!-- 프사 추가 하려면 Groupboard_MemberinfoDTO에 프사 추가, MAPPER에 추가하기 -->
-                  <!--      <h4 th:text="${b.mi_memname }+'('+${b.mi_memid }+')'"></h4>
-                        <h5 id="boarddate" th:text="${b.boarddate }"></h5>-->
-                    </div>
 
-                    <!-- <div id="b"> -->
+                    &lt;!&ndash; <div id="b"> &ndash;&gt;
                     <div id="b">
                         <th:block th:if ="${b.requestboolean==1 }">
                             <h4><b th:text="'담당자 : '+${b.responseid }"></b></h4>
@@ -84,11 +80,11 @@
                                     <input type="button" value="종료" id="btnec" class="end"/>
                                 </div>
                             </th:block>
-                          <!--  <%-- <h5>요청진행상태 : ${b.reqstatus }</h5> --%>-->
+                          &lt;!&ndash;  <%&#45;&#45; <h5>요청진행상태 : ${b.reqstatus }</h5> &#45;&#45;%>&ndash;&gt;
                         </th:block>
 
                         <th:block th:if="${b.filename != null }">
-                          <!--  <%-- <a href="download?filename="+${b.filename }><h5>파일명 : ${b.filename }</h5></a> --%>-->
+                          &lt;!&ndash;  <%&#45;&#45; <a href="download?filename="+${b.filename }><h5>파일명 : ${b.filename }</h5></a> &#45;&#45;%>&ndash;&gt;
                             <h5>파일명 : <input type="button" th:value="${b.filename }" class="file"/></h5>
                         </th:block>
 
@@ -106,10 +102,10 @@
                             <input type="hidden" name="bno" th:value="${b.bno }"/>
                             <input type="hidden" name="groupno" th:value="${b.groupno}"/>
                             <input type="button" class="option2"/>
-                            <!-- <input type="button" value="more" class="option" onclick="optiontest()"/> -->
-                            <!-- <button class="option">
+                            &lt;!&ndash; <input type="button" value="more" class="option" onclick="optiontest()"/> &ndash;&gt;
+                            &lt;!&ndash; <button class="option">
                                 <img src="/resources/assets/img/more.png" id="more" />
-                            </button> -->
+                            </button> &ndash;&gt;
                             <div th:id="${b.bno }+'d'" class="sub2">
                                 <ul>
                                     <li>
@@ -128,11 +124,11 @@
                                     </li>
                                 </ul>
                             </div>
-                        </div><!--c2 end  -->
-                    </div><!-- c end -->
+                        </div>&lt;!&ndash;c2 end  &ndash;&gt;
+                    </div>&lt;!&ndash; c end &ndash;&gt;
 
                     <div class="e" th:id="${b.bno }">
-                        <!-- 댓글 div -->
+                        &lt;!&ndash; 댓글 div &ndash;&gt;
                     </div>
 
                     <div id="d">
@@ -143,7 +139,7 @@
                     </div>
 
                 </div>
-            </th:block>
+            </th:block>-->
         </div>
     </div> <!-- section end -->
 </div>

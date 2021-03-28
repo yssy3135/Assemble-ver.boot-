@@ -1,7 +1,7 @@
 .writebtn {
-    width: 49.5%;
-    height: 50px;
-    border : none;
+    width: 49.76%;
+    height: 61px;
+    border : none ;
 }
 
 #writebtn1 {
@@ -16,8 +16,12 @@
 #writebtn3 {
     background-color: #D5D5D5;
 }
-
-
+.boarddiv_head{
+    width: 100%;
+    height: 20%;
+    background-color: white;
+    border-bottom: 1px solid #D5D5D5
+}
 
 
 

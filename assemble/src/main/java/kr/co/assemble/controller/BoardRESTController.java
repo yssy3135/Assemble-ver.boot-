@@ -49,7 +49,7 @@ public class BoardRESTController {
         BoardDTO dto = new BoardDTO();
         dto.setBno(bno);
         dto.setBoardcontents(contents);
-
+        System.out.println("contents"+contents);
         dao.updateBoard(dto);
 
     }

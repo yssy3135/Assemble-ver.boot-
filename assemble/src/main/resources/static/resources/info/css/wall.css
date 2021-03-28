@@ -23,7 +23,8 @@ input:focus {
 #insert {
     height: 100%;
     border: 1px solid #CCCCCC;
-    margin-bottom: 30px;
+    margin-bottom: 10px;
+    padding-bottom:31px;
 }
 #board {
     padding: 20px;
@@ -154,6 +155,11 @@ input:focus {
     background-color: white;
     border: none;
     color: #0100FF;
+}
+.contents{
+    width:100%;
+    resize:none;
+    rows:6;
 }
 /* .option a{cusor:pointer;}
 .option .hide{display:none;} */
